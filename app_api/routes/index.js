@@ -20,5 +20,6 @@ router.post('/login', ctrlAuth.login);
 
 //movies data
 router.get('/movies/popular', auth, ctrlMovies.getPopular);
+router.get('/movies/', auth, ctrlMovies.getAll);
 
 module.exports = router;

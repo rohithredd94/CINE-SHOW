@@ -17,3 +17,20 @@ module.exports.getPopular = function(req, res) {
   }
 
 };
+
+module.exports.getAll = function(req, res) {
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie
+      .find()
+      .exec(function(err, movie) {
+        console.log(movie);
+        res.status(200).json(movie);
+      });
+  }
+
+};
