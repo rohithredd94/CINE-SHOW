@@ -9,7 +9,7 @@
     return {
       restrict: 'EA',
       templateUrl: '/common/directives/search/search.template.html',
-      //controller: 'navigationCtrl as navvm'
+      controller: 'searchCtrl as shvm'
     };
   }
 
