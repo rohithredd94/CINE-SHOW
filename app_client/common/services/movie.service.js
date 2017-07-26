@@ -21,10 +21,18 @@
         }
       });
     };
+    var getAll = function () {
+      return $http.get('/api/movies', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
 
     return {
       getPopularMovie : getPopularMovie,
-      getLatestMovie : getLatestMovie
+      getLatestMovie : getLatestMovie,
+      getAll : getAll
 
     };
   }
