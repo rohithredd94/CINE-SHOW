@@ -9,7 +9,7 @@ var auth = jwt({
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
 var ctrlMovies = require('../controllers/movie');
-
+var ctrlGenres = require('../controllers/genre');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -20,5 +20,9 @@ router.post('/login', ctrlAuth.login);
 
 //movies data
 router.get('/movies/popular', auth, ctrlMovies.getPopular);
+router.get('/movies/latest', auth, ctrlMovies.getLatest);
+
+//genres
+router.get('/genres',auth, ctrlGenres.getGenres);
 
 module.exports = router;

@@ -110,7 +110,36 @@
 
             </div> -->
         </section>
+        <section class="section" style="margin-bottom: 0px;">
+            <!--Section heading-->
+            <h1 class="section-heading">Latest</h1>
+            <!--Section sescription-->
+            <p class="section-description"></p>
+
+            <div class = "row" >
+              <div class="col-lg-3 col-md-6 mb-r" ng-repeat='latest in vm.latest'>
+                <div class="card card-cascade narrower animated fadeInUp">
+                  <div class="view overlay hm-black-strong ">
+                    <img ng-src="https://image.tmdb.org/t/p/w500{{latest.poster_path}}" class="img-fluid" alt="">
+                    <div class="mask flex-center">
+                        <h5 class="white-text">{{latest.title}}</h5>
+
+                    </div>
+                    <a>
+                        <div class="mask waves-effect waves-light" ripple-radius></div>
+                    </a>
+
+
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+        </section>
+
     </div>
+
     <!--/.Mask-->
 <!--/Navigation & Intro-->
 

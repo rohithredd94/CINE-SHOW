@@ -19,6 +19,7 @@
     //   });
     vm.user = {};
     vm.movie = {};
+    vm.latest = {};
     meanData.getProfile()
       .success(function(data) {
         console.log("inside get popular-2",data);
@@ -42,6 +43,14 @@
       .success(function(data) {
         console.log("inside get popular",data);
         vm.movie = data;
+      })
+      .error(function (e) {
+        console.log(e);
+      });
+    movieData.getLatestMovie()
+      .success(function(data) {
+        console.log("inside get latest",data);
+        vm.latest = data;
       })
       .error(function (e) {
         console.log(e);
