@@ -1,0 +1,121 @@
+<!--Navigation & Intro-->
+
+<navigation></navigation>
+
+    <!--Mask-->
+    <div class="hm-black-light view-main col-md-12">
+        <section class="section" style="margin-bottom: 0px;">
+            <!--Section heading-->
+            <h1 class="section-heading">Popular</h1>
+            <!--Section sescription-->
+            <p class="section-description"></p>
+
+            <div class = "row" >
+              <div class="col-lg-3 col-md-6 mb-r" ng-repeat='movie in vm.movie'>
+                <div class="card card-cascade narrower animated fadeInUp">
+                  <div class="view overlay hm-black-strong ">
+                    <img ng-src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-fluid" alt="">
+                    <div class="mask flex-center">
+                        <h5 class="white-text">{{movie.title}}</h5>
+
+                    </div>
+                    <a>
+                        <div class="mask waves-effect waves-light" ripple-radius></div>
+                    </a>
+
+
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="row"> -->
+                <!-- First Movie -->
+                <!-- <div class="col-lg-3 col-md-6 mb-r">
+                    <div class="card card-cascade narrower">
+
+                        <div class="view overlay hm-white-slight">
+                            <img src="https://image.tmdb.org/t/p/w500/gGBu0hKw9BGddG8RkRAMX7B6NDB.jpg" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask waves-effect waves-light" ripple-radius></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-block text-center">
+                        <h4 class="card-title"><strong><a href="">Logan</a></strong></h4>
+
+                        <ul class="rating">
+                            <li>Rating:</li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star-o"></i></li>
+                        </ul> -->
+
+                        <!--Description-->
+                        <!-- <p class="card-text">In the near future, a weary Logan cares for an ailing Professor X in a hideout on the Mexican border. But Logan's attempts to hide from the world and his legacy are upended when a young mutant arrives, pursued by dark forces.
+                        </p>
+
+                        <div class="card-footer" style="background-color: black;">
+
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Second Movie -->
+                <!-- <div class="col-lg-3 col-md-6 mb-r">
+                    <div class="card card-cascade narrower">
+
+                        <div class="view overlay hm-white-slight">
+                            <img src="https://image.tmdb.org/t/p/w500/5qcUGqWoWhEsoQwNUrtf3y3fcWn.jpg" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask waves-effect waves-light" ripple-radius></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-block text-center">
+                        <h4 class="card-title"><strong><a href="">Despicable Me 3</a></strong></h4>
+
+                        <ul class="rating">
+                            <li>Rating:</li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star-o"></i></li>
+                        </ul> -->
+
+                        <!--Description-->
+                        <!-- <p class="card-text">Gru and his wife Lucy must stop former '80s child star Balthazar Bratt from achieving world domination.
+                        </p>
+
+                        <div class="card-footer" style="background-color: black;">
+
+                        </div>
+                    </div>
+                </div>
+                <div>
+                  <p>{{vm.movie.title}}</p>
+                  <p ng-repeat ='movie in vm.movie'> {{ movie.title}}</p>
+                </div>
+
+            </div> -->
+        </section>
+    </div>
+    <!--/.Mask-->
+<!--/Navigation & Intro-->
+
+<!--Section: Products v.1-->
+<foot></foot>
+<footer style="height: 5%; background-color: black;">
+
+</footer>

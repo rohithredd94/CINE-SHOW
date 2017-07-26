@@ -1,0 +1,129 @@
+/* TEMPLATE STYLES */
+
+html,
+body,
+.view {
+    height: 100%;
+    color: white;
+    
+}
+header{
+    height: 0;
+}
+.view-main{
+    padding-top: 5%;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+section{
+    border-bottom: 0;
+}
+/* Navigation*/
+.navbar
+{
+    background-color: transparent;
+    font-size: 20px;
+}
+header,nav{
+    background-color: black;
+}
+        
+        .top-nav-collapse {
+            background-color: #4285F4;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                background-color: #4285F4;
+            }
+        }
+
+
+.full-bg-img {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .full-bg-img,
+    .view, .view-main {
+        height: auto;
+        position: relative;
+    }
+}
+.description {
+    padding-top: 25%;
+    padding-bottom: 3rem;
+    color: #fff
+}
+
+@media (max-width: 992px) {
+    .description {
+        padding-top: 7rem;
+        text-align: center;
+    }
+}
+
+.view {
+    background: url("/images/background-plane.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.card{
+  color: black;
+}
+.view-main{
+    /*background: url("/images/background-plane.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
+    background: black; /* For browsers that do not support gradients */
+    /*background: -webkit-linear-gradient(black, white); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(black, white); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(black, white); /* For Firefox 3.6 to 15 */
+    /*background: linear-gradient(black, white); /* Standard syntax */
+}
+/* CSS for dropdown*/
+.dropbtn {
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    /*position: relative;*/
+    /*display: inline-block;*/
+    padding-top: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {font-weight: bold;}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    /*background-color: #3e8e41;*/
+}
+.rating li{
+    display: inline-block;
+}
