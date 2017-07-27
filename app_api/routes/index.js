@@ -22,6 +22,7 @@ router.post('/login', ctrlAuth.login);
 router.get('/movies/popular', auth, ctrlMovies.getPopular);
 router.get('/movies/latest', auth, ctrlMovies.getLatest);
 router.get('/movies/', auth, ctrlMovies.getAll);
+router.post('/movies/', auth, ctrlMovies.getSearch);
 
 //genres
 router.get('/genres',auth, ctrlGenres.getGenres);

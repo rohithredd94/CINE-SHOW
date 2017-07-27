@@ -29,10 +29,21 @@
       });
     };
 
+    var getSearch = function(search){
+      console.log('Inside Get Search',search);
+      return $http.post('/api/movies', search, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+
+    };
+
     return {
       getPopularMovie : getPopularMovie,
       getLatestMovie : getLatestMovie,
-      getAll : getAll
+      getAll : getAll,
+      getSearch : getSearch
 
     };
   }

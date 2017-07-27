@@ -1,6 +1,7 @@
 <div class="container" style="padding: 0;">
     <div class="row" style="position: relative;">
         <div class="col-xs-12" style="width:100%;">
+        <form ng-submit="shvm.onSearch()">
 		    <div class="input-group">
                 <div class="input-group-btn search-panel">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -15,12 +16,15 @@
                       <li><a href="#all">Anything</a></li>
                     </ul>
                 </div>
+                
                 <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" ng-model="query" placeholder="Search term...">
+                <input type="text" class="form-control" name="x" ng-model="query" ng-change="shvm.search.query=query" placeholder="Search term...">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="fa fa-search"></span></button>
+                    <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
                 </span>
+                
             </div>
+        </form>
         </div>
 
 	</div>
@@ -39,3 +43,4 @@
   </ul>
   </div>
 </div>
+<!-- <p ng-repeat="search in shvm.searchData">{{search.title}}</p> -->
