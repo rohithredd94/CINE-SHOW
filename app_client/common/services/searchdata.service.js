@@ -55,14 +55,18 @@ function searchservice() {
         };*/
 
         var searchData = [];
+        var dataflag = 0;
+        console.log('Inside Search service');
 
         var addData = function(data){
             console.log('Inside add data');
             searchData = data;
-            console.log(searchData);
+            dataflag= 1;
+            console.log(dataflag);
         };
 
         var getData = function(){
+            console.log('Inside get data');
             return searchData;
         }
         return{

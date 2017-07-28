@@ -4,8 +4,8 @@
     .module('meanApp')
     .controller('searchCtrl', searchCtrl);
 
-  searchCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice'];
-  function searchCtrl($location, meanData, movieData, authentication,searchservice) {
+  searchCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','$window','$timeout'];
+  function searchCtrl($location, meanData, movieData, authentication,searchservice,$rootScope,$window,$timeout) {
     var vm = this;
     console.log('Search controller activated');
     vm.isLoggedIn = authentication.isLoggedIn();
@@ -33,8 +33,12 @@
                 console.log('success',data.length);
                 vm.searchData = data;
                 searchservice.addData(vm.searchData);
+                $timeout(function(){
+                  $rootScope.$broadcast('search_event');  
+                });
                 $location.path('/search');
-                console.log('After location',vm.searchData);
+                //$window.location.assign("/search");
+                console.log('After location');
               });
     };
     console.log(vm.search);
