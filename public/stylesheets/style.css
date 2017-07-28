@@ -59,7 +59,14 @@ footer.page-footer {
 .card{
   color: black;
 }
-.search .col-xs-12{
-  width:100%;
+.search{
+  width: 100%;
   background-color: black;
+
+
+}
+.search .col-xs-12,.artistlist{
+  width: 50%;
+  margin-left: 320px;
+
 }
