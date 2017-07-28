@@ -5,8 +5,11 @@
     .service('pager', pager);
 
   pager.$inject = ['$http', 'authentication'];
-function pager(totalItems, currentPage, pageSize) {
-        /*// default to first page
+function pager() {
+        // default to first page
+        console.log('Pager service activated'); 
+
+        var GetPager = function (totalItems, currentPage, pageSize){
         currentPage = currentPage || 1;
  
         // default page size is 10
@@ -39,7 +42,12 @@ function pager(totalItems, currentPage, pageSize) {
         var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
  
         // create an array of pages to ng-repeat in the pager control
-        var pages = _.range(startPage, endPage + 1);
+        //var pages = _.range(startPage, endPage + 1);
+        var pages = [];
+        for (var i = startPage; i <= endPage; i++) {
+            pages.push(i);
+        }
+        console.log(pages);
  
         // return object with all pager properties required by the view
         return {
@@ -52,7 +60,11 @@ function pager(totalItems, currentPage, pageSize) {
             startIndex: startIndex,
             endIndex: endIndex,
             pages: pages
-        };*/
+        };
+      }
+      return{
+        GetPager : GetPager
+      }
 
     };
 
