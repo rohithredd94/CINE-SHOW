@@ -1,6 +1,7 @@
 (function () {
 
   angular.module('meanApp', ['ngRoute']);
+  
 
   function config ($routeProvider, $locationProvider) {
     $routeProvider
@@ -29,7 +30,12 @@
         controller: 'mainCtrl',
         controllerAs: 'vm'
       })
-      .otherwise({/*redirectTo: '/'*/});
+      .when('/search', {
+        templateUrl: '/search/searchpage.view.html',
+        controller: 'searchPageCtrl',
+        controllerAs: 'vm'
+      })
+      .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
