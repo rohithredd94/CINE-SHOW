@@ -45,14 +45,15 @@
     }
     console.log(vm.dummyItems);
 
-    vm.pager = {};
-    vm.setPage = setPage;
- 
-    initController();
+    
 
     $rootScope.$on('search_event',function(){
       vm.searchData = searchservice.getData();
       console.log(vm.searchData);
+      vm.pager = {};
+      vm.setPage = setPage;
+ 
+      initController();
     });
 
     //For pager
@@ -73,6 +74,12 @@
  
         // get current page of items
         vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+
+        // get pager object from service
+        vm.pager = pager.GetPager(vm.searchData.length, page);
+ 
+        // get current page of items
+        vm.items = vm.searchData.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
     }
 
 

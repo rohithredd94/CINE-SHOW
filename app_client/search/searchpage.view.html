@@ -8,10 +8,9 @@
 </div>
 <div class="container" style="color: black;">
     <div class="text-center">
-        <h1>AngularJS - Pagination Example with logic like Google</h1>
  
         <!-- items being paged -->
-        <div ng-repeat="item in vm.items">Item {{item}}</div>
+        <div ng-repeat="item in vm.items">{{item.title}}</div>
          
         <!-- pager -->
         <ul ng-if="vm.pager.pages.length" class="pagination">
