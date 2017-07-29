@@ -52,7 +52,7 @@
       getPopularMovie : getPopularMovie,
       getLatestMovie : getLatestMovie,
       getAll : getAll,
-      getSearch : getSearch
+      getSearch : getSearch,
       getMovieProfile : getMovieProfile
     };
   }
