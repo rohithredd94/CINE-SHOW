@@ -70,3 +70,18 @@ footer.page-footer {
   margin-left: 320px;
 
 }
+
+.card-img-bottom {
+  color: #A9A9A9;
+  padding-left: 30px;
+  padding-top: 30px;
+  background-size: cover;
+  width: 300px;
+  height:500px;
+
+}
+
+.search_content .card{
+  margin-bottom: 25px;
+  background-color: #A9A9A9;
+}
