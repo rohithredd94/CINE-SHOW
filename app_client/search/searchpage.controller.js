@@ -4,8 +4,8 @@
     .module('meanApp')
     .controller('searchPageCtrl', searchPageCtrl);
 
-  searchPageCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','pager'];
-  function searchPageCtrl($location, meanData, movieData, authentication,searchservice, $rootScope,pager) {
+  searchPageCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','pager','$scope'];
+  function searchPageCtrl($location, meanData, movieData, authentication,searchservice, $rootScope,pager,$scope) {
     var vm = this;
     console.log('Search  Page controller activated');
     /*vm.isLoggedIn = authentication.isLoggedIn();
@@ -43,11 +43,18 @@
     for (var i = 1; i <= 151; i++) {
         vm.dummyItems.push(i);
     }
+
     console.log(vm.dummyItems);
 
-    
+
+    vm.searchData = searchservice.getData();
+    vm.pager = {};
+    vm.setPage = setPage;
+ 
+    initController();
 
     $rootScope.$on('search_event',function(){
+      console.log('Event Triggered');
       vm.searchData = searchservice.getData();
       console.log(vm.searchData);
       vm.pager = {};
