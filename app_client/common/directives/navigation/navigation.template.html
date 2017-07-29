@@ -13,7 +13,7 @@
 </div>
  -->
 <link rel="stylesheet" type="text/css" href="stylesheets/main-stylesheet.css">
-<nav class="navbar navbar-toggleable-md navbar-dark fixed-top scrolling-navbar" style="background-color: black;">
+<nav class="navbar navbar-toggleable-md navbar-dark fixed-top scrolling-navbar customnav" style="background-color: black;">
         <div class="container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,9 +50,8 @@
                         </div>-->
                         <a class="dropbtn">Movies By Genre</a>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <a href="#" ng-repeat='genre in navvm.genres'>{{genre.name}}</a>
+
                         </div>
                     </li>
                     <li class="nav-item">

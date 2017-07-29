@@ -5,13 +5,14 @@ body,
 .view {
     height: 100%;
     color: white;
-    
+    background-color: black;
+
 }
 header{
     height: 0;
 }
 .view-main{
-    padding-top: 5%;
+    
     padding-right: 10%;
     padding-left: 10%;
 }
@@ -26,12 +27,13 @@ section{
 }
 header,nav{
     background-color: black;
+
 }
-        
+
         .top-nav-collapse {
             background-color: #4285F4;
         }
-        
+
         @media only screen and (max-width: 768px) {
             .navbar {
                 background-color: #4285F4;

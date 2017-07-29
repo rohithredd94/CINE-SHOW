@@ -49,3 +49,5 @@ process.on('SIGTERM', function() {
 require('./users');
 require('./movies');
 require('./genres');
+require('./casts');
+

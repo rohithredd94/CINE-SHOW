@@ -59,7 +59,34 @@ footer.page-footer {
 .card{
   color: black;
 }
-.search .col-xs-12{
-  width:100%;
+.search{
+  width: 100%;
   background-color: black;
+
+
+}
+.search .col-xs-12,.artistlist{
+  width: 50%;
+  margin-left: 320px;
+
+}
+
+.card-img-bottom {
+
+  padding-left: 30px;
+  padding-top: 30px;
+  background-size: cover;
+  width: 300px;
+  height:500px;
+
+}
+
+.search_content .card{
+  margin-bottom: 25px;
+  background-color:	#606060;
+  color:white;
+}
+
+.search_content .card-block{
+  margin-top: 50px;
 }

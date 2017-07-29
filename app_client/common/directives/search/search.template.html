@@ -1,10 +1,10 @@
-<div class="container" style="padding: 0;">
+<div class="container search" style="padding: 0;">
     <div class="row" style="position: relative;">
-        <div class="col-xs-12" style="width:100%;">
+        <div class="col-xs-12">
         <form ng-submit="shvm.onSearch()">
 		    <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-outline-white dropdown-toggle" data-toggle="dropdown">
                     	<span id="search_concept">Filter by</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
@@ -16,20 +16,36 @@
                       <li><a href="#all">Anything</a></li>
                     </ul>
                 </div>
-                
+
                 <input type="hidden" name="search_param" value="all" id="search_param">
                 <input type="text" class="form-control" name="x" ng-model="query" on-focus="focused=true" on-blur="focused=false" ng-change="shvm.search.query=query" placeholder="Search term...">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
+                    <button class="btn btn-outline-white" type="submit"><span class="fa fa-search"></span></button>
                 </span>
-                
+
             </div>
         </form>
         </div>
 
 	</div>
+
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <form id="search_form" onsubmit="return false;">
+        <div class="input-group">
+          <input type="text" class="input-ol form-control" name="x" ng-model="query" placeholder="Ex: Thor... " />
+          <span class="input-group-btn" onclick="return searchcontent()">
+            <button class="btn btn-outline-primary btn-primary rounded" type="button" aria-label="Search">
+              <i class="fa fa-search" aria-hidden="true"></i>
+             </button>
+           </span>
+        </div>
+      </form>
+    </div>
+  </div> -->
   <div>
-    <ul class="artistlist" ng-show="focused" style="position: absolute; top: 100%; width: 100%; z-index: 100;">
+
+   <ul class="artistlist" ng-show="focused" style="position: absolute; top: 100%; width: 100%; z-index: 100;">
     <li ng-animate="'animate'" class="artist cf" ng-repeat="item in shvm.movie | filter: query" style="height: 100%; height: 100%;  background-color: white;">
       <a href="/movies/{{item.id}}" style="display: inline-block;">
         <div class="info row">

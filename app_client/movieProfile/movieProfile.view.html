@@ -1,0 +1,49 @@
+<navigation></navigation>
+
+<div class="hm-black-light view-main col-md-12">
+ 
+ <section class="section" style="margin-bottom: 0px; margin-top: 100px">
+	
+
+	<div class ="animated fadeInLeft">
+	   <h5> {{vm.movie.title}} </h5>           
+       <img ng-src="https://image.tmdb.org/t/p/w500{{vm.movie.poster_path}}" class="img-fluid float-left" alt="" height="200" width="200" style="margin-right:10px">
+
+    </div>
+    <div class="">
+    	OVERVIEW 
+     	<br/>
+     	{{vm.movie.overview}}
+     	<br/>
+     	RATINGS  {{vm.movie.vote_average}} / 10
+     	<br/>
+     	GENRES
+    </div>
+    	 
+    <div ng-repeat='genre in vm.movie.genre' class="">
+    	{{genre}}
+    </div>
+    <div class="">
+    	CAST
+    	<br>
+    	<div class="col-lg-3 col-md-6 mb-r" ng-repeat='cast in vm.movie.cast'>
+              
+            <!--<div class="card card-cascade narrower">
+              <div class="view overlay hm-black-strong "> -->
+                
+                	<h5 class="white-text">{{cast.name}}</h5>
+                    <!--<img ng-src="https://image.tmdb.org/t/p/w500{{cast.profile_path}}" class="img-fluid" alt="">-->
+
+              <!--</div>
+
+            </div>-->
+                
+        </div>
+    </div>
+
+ </section>
+</div>
+
+<footer style="height: 5%; background-color: black;">
+
+</footer>

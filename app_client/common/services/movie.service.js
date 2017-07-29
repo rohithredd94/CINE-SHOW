@@ -4,8 +4,8 @@
     .module('meanApp')
     .service('movieData', movieData);
 
-  movieData.$inject = ['$http', 'authentication'];
-  function movieData($http, authentication) {
+  movieData.$inject = ['$http', 'authentication','$route','$routeParams'];
+  function movieData($http, authentication,$route,$routeParams) {
 
     var getPopularMovie = function () {
       return $http.get('/api/movies/popular', {
@@ -39,12 +39,21 @@
 
     };
 
+    var getMovieProfile = function () {
+      console.log("ID: ",$routeParams.id);
+      return $http.get('/api/movies/'+$routeParams.id , {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
+    console.log("Hello",getMovieProfile);
     return {
       getPopularMovie : getPopularMovie,
       getLatestMovie : getLatestMovie,
       getAll : getAll,
-      getSearch : getSearch
-
+      getSearch : getSearch,
+      getMovieProfile : getMovieProfile
     };
   }
 
