@@ -26,5 +26,7 @@ router.post('/movies/', auth, ctrlMovies.getSearch);
 
 //genres
 router.get('/genres',auth, ctrlGenres.getGenres);
+router.get('/movies/:id', auth, ctrlMovies.getMovieProfile);
+//router.get('/movies/cast/:id', auth, ctrlCast.getCastByMovie);
 
 module.exports = router;

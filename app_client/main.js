@@ -33,6 +33,11 @@
       .when('/search', {
         templateUrl: '/search/searchpage.view.html',
         controller: 'searchPageCtrl',
+         controllerAs: 'vm'
+      })
+      .when('/movies/:id', {
+        templateUrl: '/movieProfile/movieProfile.view.html',
+        controller: 'movieCtrl',
         controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/'});
