@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var Movie = mongoose.model('moviesData','moviesData');
 var Cast = mongoose.model('cast','cast');
 var Genre = mongoose.model('genres','genres');
+var ReviewData = mongoose.model('reviews','reviews');
+
 
 module.exports.getPopular = function(req, res) {
 
@@ -98,20 +100,29 @@ module.exports.getMovieProfile = function(req, res) {
       .then(function(){
         movieData['genre'] = genres;
         movieData['cast'] = {};
+       
         Cast.findOne({id:req.params.id})
           .exec(function(err, cast) {
-          //console.log(cast);
-          movieData['cast'] = cast['cast'];
-          //movieData['genres'] = genres;
-          console.log(movieData);
-          res.status(200).json(movieData);
+            movieData['cast'] = cast['cast'];
+            
+           
           });
+      })
+      .then(function(){
+         movieData['reviews'] = {};
+         ReviewData.find({movie_id:req.params.id}).sort({created_date: -1}).limit(5)
+         .exec(function(err,review){
+            movieData['reviews'] = review;
+            console.log(movieData);
+            res.status(200).json(movieData);
+         })
       });
 
 
 
   }
 
+<<<<<<< HEAD
 };
 
 module.exports.getLatestAll = function(req, res) {
@@ -129,3 +140,6 @@ module.exports.getLatestAll = function(req, res) {
       });
 }
 };
+=======
+};
+>>>>>>> 214850417c6b3aa13feddd6281715661d096405e
