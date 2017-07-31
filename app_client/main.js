@@ -40,6 +40,11 @@
         controller: 'movieCtrl',
         controllerAs: 'vm'
       })
+      .when('/popular', {
+        templateUrl: '/popular/popular.view.html',
+        controller: 'popularCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API
