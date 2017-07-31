@@ -1,7 +1,7 @@
 (function () {
 
   angular.module('meanApp', ['ngRoute']);
-  
+
 
   function config ($routeProvider, $locationProvider) {
     $routeProvider
@@ -40,6 +40,11 @@
         controller: 'movieCtrl',
         controllerAs: 'vm'
       })
+      .when('/latest', {
+        templateUrl: '/latest/latest.view.html',
+        controller: 'latestCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API
@@ -57,7 +62,7 @@
         console.log('Checking if logged in-2');
         $location.path('/main');
       }
-      
+
 
     });
   }
