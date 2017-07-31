@@ -40,6 +40,11 @@
         controller: 'movieCtrl',
         controllerAs: 'vm'
       })
+      .when('/popular', {
+        templateUrl: '/popular/popular.view.html',
+        controller: 'popularCtrl',
+        controllerAs: 'vm'
+      })
       .when('/latest', {
         templateUrl: '/latest/latest.view.html',
         controller: 'latestCtrl',

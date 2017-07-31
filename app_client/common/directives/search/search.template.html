@@ -16,9 +16,9 @@
                       <li><a href="#all">Anything</a></li>
                     </ul>
                 </div>
-
+                <!-- on-focus="focused=true" on-blur="focused=false" -->
                 <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" ng-model="query" on-focus="focused=true" on-blur="focused=false" ng-change="shvm.search.query=query" placeholder="Search term...">
+                <input type="text" class="form-control" name="x" ng-model="query" ng-focus="focused=true"  ng-blur="shvm.changeFocused()" ng-change="shvm.search.query=query" placeholder="Search term...">
                 <span class="input-group-btn">
                     <button class="btn btn-outline-white" type="submit"><span class="fa fa-search"></span></button>
                 </span>
@@ -45,9 +45,9 @@
   </div> -->
   <div>
 
-   <ul class="artistlist" ng-show="focused" style="position: absolute; top: 100%; width: 100%; z-index: 100;">
-    <li ng-animate="'animate'" class="artist cf" ng-repeat="item in shvm.movie | filter: query | limitTo:5" style="height: 100%; height: 100%;  background-color: white;">
-      <a ng-href="/movies/{{item.id}}/" style="display: inline-block;">
+   <ul class="artistlist" ng-show="focused"  style="position: absolute; top: 100%; width: 100%; z-index: 100;">
+    <li ng-animate="'animate'" class="artist cf" ng-focus="focused=true" ng-click="focused=true" ng-repeat="item in shvm.movie | filter: query | limitTo:5" style="height: 100%; height: 100%;  background-color: white;">
+      <a ng-href="/movies/{{item.id}}" style="display: inline-block;">
         <div class="info row">
           <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-fluid" alt="Photo of {{item.title}}" style="height: 50px; width: 70px; padding-left: 20px;">
           &nbsp&nbsp&nbsp&nbsp&nbsp

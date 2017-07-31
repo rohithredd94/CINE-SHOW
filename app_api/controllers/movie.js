@@ -6,16 +6,38 @@ var ReviewData = mongoose.model('reviews','reviews');
 
 
 module.exports.getPopular = function(req, res) {
-
+  var tempdate = new Date();
+  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate = tempdate.toISOString();
   if (!req.payload._id) {
     res.status(401).json({
       "message" : "UnauthorizedError: private profile"
     });
   } else {
     Movie
-      .find().sort( { vote_average: -1 } ).limit(8)
+      .find({release_date :{"$gte": tempdate}}).sort( { vote_average: -1 } ).limit(8)
       .exec(function(err, movie) {
 
+        res.status(200).json(movie);
+      });
+  }
+
+};
+
+module.exports.getPopularAll = function(req, res) {
+  var currentdate = new Date().toISOString();
+  var tempdate = new Date();
+  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate = tempdate.toISOString();
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie
+      .find({release_date :{"$gte": tempdate}}).sort( { vote_average: -1} )
+      .exec(function(err, movie) {
+        console.log(movie);
         res.status(200).json(movie);
       });
   }

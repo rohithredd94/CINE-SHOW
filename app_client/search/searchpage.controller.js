@@ -79,10 +79,10 @@
         }
 
         // get pager object from service
-        vm.pager = pager.GetPager(vm.dummyItems.length, page);
+        //vm.pager = pager.GetPager(vm.dummyItems.length, page);
 
         // get current page of items
-        vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+        //vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
 
         // get pager object from service
         vm.pager = pager.GetPager(vm.searchData.length, page);

@@ -14,6 +14,13 @@
         }
       });
     };
+    var getPopularAll = function () {
+      return $http.get('/api/movies/popularAll', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
     var getLatestMovie = function () {
       return $http.get('/api/movies/latest', {
         headers: {
@@ -65,6 +72,7 @@
       getAll : getAll,
       getSearch : getSearch,
       getMovieProfile : getMovieProfile,
+      getPopularAll : getPopularAll,
       getLatestAll : getLatestAll
     };
   }
