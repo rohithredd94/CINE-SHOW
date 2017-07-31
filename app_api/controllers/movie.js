@@ -102,19 +102,20 @@ module.exports.getMovieProfile = function(req, res) {
          ReviewData.find({movie_id:req.params.id}).sort({created_date: -1}).limit(5)
          .exec(function(err,review){
             movieData['reviews'] = review;
-            //console.log(movieData);
+            console.log(movieData);
             //res.status(200).json(movieData);
          })
       })
       .then(function(){
         movieData['genre'] = genres;
         movieData['cast'] = {};
-       
+
         Cast.findOne({id:req.params.id})
           .exec(function(err, cast) {
             movieData['cast'] = cast['cast'];
-            console.log(movieData);
+            console.log('----CAST----',cast['cast']);
             res.status(200).json(movieData);
+
           });
       });
 
@@ -122,4 +123,20 @@ module.exports.getMovieProfile = function(req, res) {
 
   }
 
+};
+
+module.exports.getLatestAll = function(req, res) {
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie
+      .find().sort( { release_date: -1 } )
+      .exec(function(err, movie) {
+
+        res.status(200).json(movie);
+      });
+}
 };

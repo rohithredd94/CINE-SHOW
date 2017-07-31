@@ -39,6 +39,15 @@
 
     };
 
+    var getLatestAll = function () {
+      console.log("inside getLatestAll")
+      return $http.get('/api/movies/latestAll', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
+
     var getMovieProfile = function () {
       console.log("ID: ",$routeParams.id);
       return $http.get('/api/movies/'+$routeParams.id , {
@@ -47,13 +56,16 @@
         }
       });
     };
+
+
     console.log("Hello",getMovieProfile);
     return {
       getPopularMovie : getPopularMovie,
       getLatestMovie : getLatestMovie,
       getAll : getAll,
       getSearch : getSearch,
-      getMovieProfile : getMovieProfile
+      getMovieProfile : getMovieProfile,
+      getLatestAll : getLatestAll
     };
   }
 

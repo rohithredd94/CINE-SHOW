@@ -46,8 +46,8 @@
   <div>
 
    <ul class="artistlist" ng-show="focused" style="position: absolute; top: 100%; width: 100%; z-index: 100;">
-    <li ng-animate="'animate'" class="artist cf" ng-repeat="item in shvm.movie | filter: query" style="height: 100%; height: 100%;  background-color: white;">
-      <a href="/movies/{{item.id}}" style="display: inline-block;">
+    <li ng-animate="'animate'" class="artist cf" ng-repeat="item in shvm.movie | filter: query | limitTo:5" style="height: 100%; height: 100%;  background-color: white;">
+      <a ng-href="/movies/{{item.id}}/" style="display: inline-block;">
         <div class="info row">
           <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-fluid" alt="Photo of {{item.title}}" style="height: 50px; width: 70px; padding-left: 20px;">
           &nbsp&nbsp&nbsp&nbsp&nbsp
