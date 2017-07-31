@@ -50,4 +50,5 @@ require('./users');
 require('./movies');
 require('./genres');
 require('./casts');
+require('./reviews');
 

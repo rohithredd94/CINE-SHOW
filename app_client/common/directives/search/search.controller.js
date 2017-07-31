@@ -38,7 +38,7 @@
                 $timeout(function(){
                   $rootScope.$broadcast('search_event');
                   $scope.$apply();
-                  console.log('Event broadcast complete');  
+                  console.log('Event broadcast complete');
                 });
                 $location.path('/search');
                 //$window.location.assign("/search");
@@ -50,7 +50,6 @@
     vm.changeFocused = function(){
       $timeout(function(){$scope.focused = false}, 101);
     }
-
   }
 
   angular

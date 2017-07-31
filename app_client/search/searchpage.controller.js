@@ -4,8 +4,8 @@
     .module('meanApp')
     .controller('searchPageCtrl', searchPageCtrl);
 
-  searchPageCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','pager','$scope'];
-  function searchPageCtrl($location, meanData, movieData, authentication,searchservice, $rootScope,pager,$scope) {
+  searchPageCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','pager','$scope','$anchorScroll'];
+  function searchPageCtrl($location, meanData, movieData, authentication,searchservice, $rootScope,pager,$scope,$anchorScroll) {
     var vm = this;
     console.log('Search  Page controller activated');
     /*vm.isLoggedIn = authentication.isLoggedIn();
@@ -50,7 +50,7 @@
     vm.searchData = searchservice.getData();
     vm.pager = {};
     vm.setPage = setPage;
- 
+
     initController();
 
     $rootScope.$on('search_event',function(){
@@ -59,34 +59,39 @@
       console.log(vm.searchData);
       vm.pager = {};
       vm.setPage = setPage;
- 
+
       initController();
     });
 
     //For pager
-    // vm.dummyItems = _.range(1, 151); // dummy array of items to be paged   
- 
+    // vm.dummyItems = _.range(1, 151); // dummy array of items to be paged
+
     function initController() {
         // initialize to page 1
         vm.setPage(1);
     }
- 
+
+
     function setPage(page) {
+
         if (page < 1 || page > vm.pager.totalPages) {
             return;
         }
- 
+
         // get pager object from service
         //vm.pager = pager.GetPager(vm.dummyItems.length, page);
- 
+
         // get current page of items
         //vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
 
         // get pager object from service
         vm.pager = pager.GetPager(vm.searchData.length, page);
- 
+
         // get current page of items
         vm.items = vm.searchData.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+
+        $location.hash('top');
+        $anchorScroll();
     }
 
 
