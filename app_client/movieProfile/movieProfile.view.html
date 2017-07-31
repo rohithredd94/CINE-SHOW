@@ -12,10 +12,10 @@
 
     </div>
 
-    <div class="">
-    <div class="use_tooltip tooltip" title="Mark as Favorite">
-      <a id="favourite" class="no_click add_to_account_list favourite false" href="#"><span class="glyphicons glyphicons-heart x1"></span></a>
-    </div>
+    <div class="text-center">
+	    <div class="use_tooltip tooltip" title="Mark as Favorite">
+	      <a id="favourite" class="no_click add_to_account_list favourite false" href="#"><span class="glyphicons glyphicons-heart x1"></span></a>
+	    </div>
     	OVERVIEW 
      	<br/>
      	{{vm.movie.overview}}
@@ -23,10 +23,9 @@
      	RATINGS  {{vm.movie.vote_average}} / 10
      	<br/>
      	GENRES
-    </div>
-    	 
-    <div ng-repeat='genre in vm.movie.genre' class="">
-    	{{genre}}
+     	<div ng-repeat='genre in vm.movie.genre' class="">
+    		{{genre}}
+   		</div>
     </div>
 
 	<div class="card container" style="margin: 20px 10px">
@@ -63,15 +62,24 @@
 		      </li>
 		    </ul>
 		  </div>
-		  <div class="card card-inverse" style="background-color: #333; border-color: black; border-width: 1px; border-style: solid" ng-repeat='review in vm.movie.reviews'>
-			  <div class="card-block" >
-			    <p class="card-text">
-			     <ul class="nav nav-pills">
-			     	<li class="col-md-4" style="color:white">{{review.user_id}}</li>
-			     	<li class="col-md-4" style="color:white">{{review.review}}</li>
-			     	<li class="col-md-4" style="color:white">{{review.rating}}</li>
-			     </ul>
-			    </p>
+		  <div ng-hide="vm.movie.reviews.length==0">
+			  <div class="card card-inverse" style="background-color: #333; border-color: black; border-width: 1px; border-style: solid" ng-repeat='review in vm.movie.reviews'>
+				  <div class="card-block">
+				    <p class="card-text">
+				     <ul class="nav nav-pills">
+				     	<li class="col-md-4" style="color:white">{{review.user_id}}</li>
+				     	<li class="col-md-4" style="color:white">{{review.review}}</li>
+				     	<li class="col-md-4" style="color:white">{{review.rating}}</li>
+				     </ul>
+				    </p>
+				  </div>
+			  </div>
+		  </div>
+		  <div ng-show="vm.movie.reviews.length==0">
+			   <div class="card card-inverse" style="background-color: #333; border-color: black; border-width: 1px; border-style: solid">
+				  <div class="card-block">
+					  	 <p class="card-text"  style="color:white"> There are no reviews to be displayed</p>
+				  </div>
 			  </div>
 		  </div>
 		</div>
