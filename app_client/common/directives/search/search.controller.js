@@ -48,7 +48,7 @@
     console.log(vm.search);
 
     vm.changeFocused = function(){
-      $timeout(function(){$scope.focused = false}, 101);
+      $timeout(function(){$scope.focused = false}, 200);
     }
   }
 
