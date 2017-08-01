@@ -28,7 +28,7 @@
                        <a class="nav-link" href="/popular">Popular</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Top Rated</a>
+                        <a class="nav-link" href="/toprated">Top Rated</a>
                     </li>
                     <!--<li class="nav-item dropdown btn-group" dropdown>
                         <a dropdownToggle ripple-radius type="button" class="nav-link dropdown-toggle">
@@ -49,9 +49,13 @@
                             <a class="dropdown-item">Something else here</a>
                         </div>-->
                         <a class="dropbtn">Movies By Genre</a>
-                        <div class="dropdown-content">
-                            <a href="#" ng-repeat='genre in navvm.genres'>{{genre.name}}</a>
-
+                        <div class="dropdown-content" style="width: 500px;">
+                            <!-- <a href="#" ng-repeat='genre in navvm.genres'>{{genre.name}}</a> -->
+                             <div ng-repeat="items in navvm.test" class="row">
+                                <div ng-repeat="item in items" class="col-md-3">
+                                    <a href="/genres/{{item.id}}">{{item.name}}</a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -69,12 +73,12 @@
                             <a class="dropdown-item">Action</a>
                             <a class="dropdown-item">Another action</a>
                             <a class="dropdown-item">Something else here</a>
+                            <i class"fa fa-user></i>
                         </div>-->
-                        <a class="dropbtn"><i class="fa fa-user"></i></a>
+                        <a class="dropbtn"><i class="fa fa-user"></i>&nbsp;&nbsp;{{ navvm.currentUser.name }}</a>
                         <div class="dropdown-content">
-                            <a ng-click="vm.onClickProfile()">Profile</a>
-                            <a>{{ vm.user.name }}</a>
-                            <a ng-click="vm.onClick()">Logout</a>
+                            <a ng-click="navvm.onClickProfile()">Profile</a>
+                            <a ng-click="navvm.onClick()">Logout</a>
                         </div>
                     </li>
                 </ul>

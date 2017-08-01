@@ -50,6 +50,16 @@
         controller: 'latestCtrl',
         controllerAs: 'vm'
       })
+      .when('/toprated', {
+        templateUrl: '/toprated/toprated.view.html',
+        controller: 'topratedCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/genres/:id', {
+        templateUrl: '/genres/genres.view.html',
+        controller: 'genresCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API
