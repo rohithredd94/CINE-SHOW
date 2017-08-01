@@ -33,17 +33,79 @@
   </div>
   <div class="col-md-8">
     <h1 class="form-signin-heading">Your profile</h1>
-    <form  class="form-horizontal">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Full name</label>
-        <p class="form-control-static">{{ vm.user.name }}</p>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Email</label>
-        <p class="form-control-static">{{ vm.user.email }}</p>
-      </div>
-    </form>
+    <ul>
+      <li class="col-sm-3">
+        <label >Full name</label>
+        <p>{{ vm.user.name }}</p>
+      </li>
+      <li class="col-sm-3">
+        <label >Email</label>
+        <p >{{ vm.user.email }}</p>
+      </li>
+      <li class="col-sm-3">
+        <label >Bio</label>
+        <p>{{ vm.user.bio }}</p>
+      </li>
+
+    </ul>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalContactForm">
+        Edit
+    </button>
+    <!--Modal: Contact form-->
+    <div class="modal animated fadeIn" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header light-blue darken-3 white-text">
+                    <h4 class="title"><i class="fa fa-pencil"></i> Edit Profile Details</h4>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <form ng-submit="vm.updateUser()">
+                <div class="modal-body mb-0" style=" color: black;">
+                    <div class="md-form form-sm">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input type="text" id="form19" class="form-control" ng-model="vm.user.name">
+                        <label for="form19">Name</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-lock prefix"></i>
+                        <input type="email" id="form20" class="form-control" ng-model="vm.user.email" disabled>
+                        <label for="form20">Your email</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-key prefix"></i>
+                        <input type="password" id="form21" class="form-control" ng-model="vm.user.password">
+                        <label for="form21">Password</label>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-pencil prefix"></i>
+                        <textarea type="text" id="form8" class="md-textarea mb-0" ng-model="vm.user.bio"></textarea>
+                        <label for="form8">Bio</label>
+                    </div>
+                    <span>{{vm.onUpdateMsg}}</span>
+                    <div class="text-center mt-1-half">
+
+                        <button class="btn btn-info mb-2" type="submit">Update <i class="fa fa-pencil-square-o ml-1"></i></button>&nbsp;
+                        <button class="btn btn-info mb-2" ng-click="vm.clearMessage()" data-dismiss="modal">Done <i class="fa fa-pencil-square-o ml-1"></i></button>
+                    </div>
+
+                </div>
+              </form>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: Contact form-->
 
   </div>
 </div>
+
 <foot></foot>

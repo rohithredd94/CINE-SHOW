@@ -13,6 +13,7 @@ var ctrlGenres = require('../controllers/genre');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
+router.post('/profile', auth, ctrlProfile.updateUser);
 
 // authentication
 router.post('/register', ctrlAuth.register);

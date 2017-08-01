@@ -1,5 +1,5 @@
 (function() {
-  
+
   angular
     .module('meanApp')
     .controller('profileCtrl', profileCtrl);
@@ -10,6 +10,15 @@
 
     vm.user = {};
 
+    vm.newdata = {
+      _id:"",
+      name:"",
+      email:"",
+      password:"",
+      bio:""
+    }
+
+    vm.onUpdateMsg = "";
     meanData.getProfile()
       .success(function(data) {
         vm.user = data;
@@ -23,6 +32,26 @@
       authentication.logout();
       $location.path("/");
     }
+    vm.clearMessage = function(){
+      vm.onUpdateMsg = "";
+    }
+    vm.updateUser = function(){
+      vm.newdata._id = vm.user._id;
+      vm.newdata.name = vm.user.name;
+      vm.newdata.email = vm.user.email;
+      vm.newdata.password = vm.user.password;
+      vm.newdata.bio = vm.user.bio;
+      meanData.storeUpdateUser(vm.newdata)
+        .success(function(data){
+          console.log("inside",data);
+          vm.onUpdateMsg = data;
+          //$location.path("/main");
+        })
+        .error(function (e){
+          console.log(e);
+        })
+    }
   }
+
 
 })();

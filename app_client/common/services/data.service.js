@@ -15,8 +15,18 @@
       });
     };
 
+    var storeUpdateUser = function (user) {
+      return $http.post('/api/profile', user, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+
+    };
+
     return {
-      getProfile : getProfile
+      getProfile : getProfile,
+      storeUpdateUser : storeUpdateUser
     };
   }
 
