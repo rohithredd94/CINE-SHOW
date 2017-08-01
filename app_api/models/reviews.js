@@ -2,6 +2,7 @@ var mongoose = require( 'mongoose' );
 
 var reviewsSchema = new mongoose.Schema({
   user_id: String,
+  name: String,
   movie_id:{
     type: Number,
     required: true
