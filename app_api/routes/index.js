@@ -39,6 +39,6 @@ router.get('/movies/:id', auth, ctrlMovies.getMovieProfile);
 //router.get('/movies/cast/:id', auth, ctrlCast.getCastByMovie);
 router.post('/movies/review',  ctrlReview.postMovieReview);
 router.post('/movies/favorite',  ctrlFav.postFavorite);
-router.get('/favorites/:userid',ctrlFav.getFavorites);
+router.get('/favorites/:user_id',auth,ctrlFav.getFavorites);
 
 module.exports = router;

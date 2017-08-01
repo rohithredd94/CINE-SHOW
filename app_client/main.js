@@ -40,6 +40,11 @@
         controller: 'movieCtrl',
         controllerAs: 'vm'
       })
+      .when('/favorites/:user_id', {
+        templateUrl: '/favorite/favorite.view.html',
+        controller: 'favCtrl',
+        controllerAs: 'vm'
+      })
       .when('/popular', {
         templateUrl: '/popular/popular.view.html',
         controller: 'popularCtrl',
