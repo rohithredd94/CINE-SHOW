@@ -2,18 +2,22 @@
 
   angular
     .module('meanApp')
-    .controller('popularCtrl', popularCtrl);
+    .controller('genresCtrl', genresCtrl);
   
-  popularCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','$window','$timeout','$scope','pager','$anchorScroll'];
-  function popularCtrl($location, meanData, movieData, authentication,searchservice,$rootScope,$window,$timeout,$scope,pager,$anchorScroll) {
+  genresCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','$window','$timeout','$scope','pager','$anchorScroll'];
+  function genresCtrl($location, meanData, movieData, authentication,searchservice,$rootScope,$window,$timeout,$scope,pager,$anchorScroll) {
     var vm = this;
     vm.movie = {};
-    movieData.getPopularAll()
+    vm.genreid = $location.path().split("/")[2];
+    vm.infomsg = "";
+    movieData.getGenreData(vm.genreid)
             .success(function(data){
                 vm.movie = data;
                 vm.pager = {};
                 vm.setPage = setPage;
- 
+                if(vm.movie.length == 0){
+                    vm.infomsg = "No movies in this genre";
+                }
                 initController();
             })
             .error(function (e) {

@@ -140,11 +140,7 @@ module.exports.getMovieProfile = function(req, res) {
 
           });
       });
-
-
-
   }
-
 };
 
 module.exports.getLatestAll = function(req, res) {
@@ -162,3 +158,36 @@ module.exports.getLatestAll = function(req, res) {
       });
 }
 };
+module.exports.getTopratedAll = function(req, res) {
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie
+      .find().sort( { vote_average: -1 } )
+      .exec(function(err, movie) {
+
+        res.status(200).json(movie);
+      });
+}
+};
+
+module.exports.getGenreData = function(req, res) {
+  console.log("inside genre data");
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+      var id = parseInt(req.params.id);
+      Movie
+      .find({genre_ids:id})
+      .exec(function(err, movies){
+        res.status(200).json(movies);
+      });
+  }
+
+};
+
