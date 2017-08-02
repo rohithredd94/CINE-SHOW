@@ -9,6 +9,7 @@
     var vm = this;
     vm.user = {};
     vm.movie = {};
+    vm.movieRatinPercentage = "";
    console.log("Initialized credentials for review");
     vm.review = {
       email : "",
@@ -86,8 +87,8 @@
 
     movieData.getMovieProfile()
       .success(function(data) {
-        console.log("inside get popular",data);
         vm.movie = data;
+        vm.movieRatinPercentage = data['vote_average']* 10;
       })
       .error(function (e) {
         console.log(e);

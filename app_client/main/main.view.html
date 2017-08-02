@@ -6,7 +6,7 @@
     <div class="hm-black-light view-main col-md-12">
         <section class="section" style="margin-bottom: 0px;">
             <!--Section heading-->
-            <h1 class="section-heading">Popular</h1>
+            <p class="h1-responsive section-heading">Popular</p>
             <!--Section sescription-->
             <p class="section-description"></p>
 
@@ -14,13 +14,20 @@
               <div class="col-lg-3 col-md-6 mb-r" ng-repeat='movie in vm.movie'>
 
                 <div class="card card-cascade narrower animated fadeInUp">
-                  <div class="view overlay hm-black-strong ">
+                  <div class="view overlay hm-black-light ">
 
-                        <img ng-src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-fluid" alt="">
+                        <img ng-src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-fluid main-img" alt="">
 
                         <div class="mask flex-center">
-                            <h5 class="white-text">{{movie.title}}</h5>
-
+                            <!-- <p class="h4-responsive white-text" >Title: {{movie.title}}</p>
+                            <p class="h6-responsive white-text" >Rating: {{movie.vote_average}}/10</p> -->
+                            <div class="c100 p{{movie.movieRatinPercentage}}">
+                                <span>{{movie.movieRatinPercentage}}%</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
                         </div>
 
                     <a href="/movies/{{movie.id}}">
@@ -117,18 +124,24 @@
         </section>
         <section class="section" style="margin-bottom: 0px;">
             <!--Section heading-->
-            <h1 class="section-heading">Latest</h1>
+            <p class="h1-responsive section-heading">Latest</p>
             <!--Section sescription-->
             <p class="section-description"></p>
 
             <div class = "row" >
               <div class="col-lg-3 col-md-6 mb-r" ng-repeat='latest in vm.latest'>
                 <div class="card card-cascade narrower animated fadeInUp">
-                  <div class="view overlay hm-black-strong ">
-                    <img ng-src="https://image.tmdb.org/t/p/w500{{latest.poster_path}}" class="img-fluid" alt="">
+                  <div class="view overlay hm-black-light ">
+                    <img ng-src="https://image.tmdb.org/t/p/w500{{latest.poster_path}}" class="img-fluid main-img" alt="">
                     <div class="mask flex-center">
-                        <h5 class="white-text">{{latest.title}}</h5>
-
+                        <!-- <h5 class="white-text">{{latest.title}}</h5> -->
+                        <div class="c100 p{{latest.movieRatinPercentage}}">
+                            <span>{{latest.movieRatinPercentage}}%</span>
+                            <div class="slice">
+                                <div class="bar"></div>
+                                <div class="fill"></div>
+                            </div>
+                        </div>
                     </div>
                     <a href="/movies/{{latest.id}}">
                         <div class="mask waves-effect waves-light" ripple-radius></div>

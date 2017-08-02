@@ -1,4 +1,5 @@
 <!-- <link rel="stylesheet" type="text/css" href="stylesheets/main-stylesheet.css"> -->
+
 <navigation></navigation><br><br><br>
 <search></search>
 
@@ -23,29 +24,30 @@
 
   </div> -->
 </div>
-<div class="hm-black-light view-main col-md-12">
+<div class="hm-black-light view-main col-md-12 profile">
+  <div class="card">
   <div class="row">
-  <div class="card-block col-md-6">
-    <img src="images/profile_photo.png" alt="User Profile Picture">
+  <div class="col-md-4">
+    <img class="img-thumbnail" src="images/profile_photo.png" alt="User Profile Picture">
   </div>
-  <div class="col-md-6">
-    <h1 class="form-signin-heading">Your profile</h1>
+  <div class="card-block col-md-8">
+    <p class="h2">Your profile</p>
     <ul>
       <li class="col-sm-3">
-        <label >Full name</label>
+        <label class="h6">Full name :</label>
         <p>{{ vm.user.name }}</p>
       </li>
       <li class="col-sm-3">
-        <label >Email</label>
+        <label class="h6">Email :</label>
         <p >{{ vm.user.email }}</p>
       </li>
       <li class="col-sm-3">
-        <label >Bio</label>
+        <label class="h6">Bio :</label>
         <p>{{ vm.user.bio }}</p>
       </li>
 
     </ul>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalContactForm">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalContactForm">
         Edit
     </button>
     <!--Modal: Contact form-->
@@ -105,7 +107,15 @@
   </div>
 </div>
 </div>
-<div class="discussionContainer" >
+</div>
+<div class="card container Recentlyrated">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item nav-link col-md-10 h5">
+              Recently Rated Movies
+        </li>
+      </ul>
+  </div>
+<div class="discussionContainer profileDiscuss" >
   <div class="card container" style="background-color: black;">
   <div class="card-header">
 
@@ -135,7 +145,7 @@
       </div>
     </div>
   </div>
-  <div ng-show="vm.movie.reviews.length==0">
+  <div ng-show="vm.userReviews.length==0">
      <div class="card card-inverse" style="background-color: #333; border-color: black; border-width: 1px; border-style: solid">
       <div class="card-block">
            <p class="card-text text-center"  style="color:white"> There are no reviews to be displayed</p>

@@ -56,18 +56,28 @@ footer.page-footer {
     -o-background-size: cover;
     background-size: cover;
 }
+
 .card{
   color: black;
 }
 .search{
-  width: 100%;
+  width: 50%;
   background-color: black;
+  margin-left: 22rem;
 
 
 }
-.search .col-xs-12,.artistlist{
-  width: 50%;
-  margin-left: 320px;
+.search .form-control{
+  color: white;
+  padding-left: 1rem;
+}
+.artistlist{
+  position:absolute;
+  top: 100%;
+  z-index: 100;
+  /*left:3%;*/
+  width: 100%;
+
 
 }
 
@@ -89,4 +99,49 @@ footer.page-footer {
 
 .search_content .card-block{
   margin-top: 50px;
+}
+
+.profile{
+  margin-top: 2rem;
+  color: white;
+  margin-bottom: 3rem;
+  width: 97%;
+  margin-left: 1.5rem;
+}
+
+.profile img{
+  width: 270px;
+  height: 270px;
+  margin-left: 3rem;
+  margin-top: 3rem;
+
+}
+
+.Recentlyrated{
+  margin: 2rem 1rem;
+  margin-left: 10rem;
+  width: 78%;
+  text-align: center;
+  padding-left: 10rem;
+}
+
+.profileDiscuss{
+  margin-bottom: 3rem;
+}
+
+.rating{
+  padding-top: 1.5rem;
+}
+.rating .c100{
+  margin-top: 1rem;
+  margin-left: 25rem;
+}
+.genres{
+  margin-top: 4rem;
+  padding-left: 2rem;
+}
+
+.cast{
+  margin: 2rem 1rem;
+  padding-left:10rem;"
 }

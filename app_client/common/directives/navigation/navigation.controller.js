@@ -40,7 +40,7 @@
       $location.path("/");
     }
     vm.onClickProfile = function(){
-      // console.log("Logging Out");
+      console.log("clicking profile");
       // authentication.logout();
       $location.path("/profile");
     }

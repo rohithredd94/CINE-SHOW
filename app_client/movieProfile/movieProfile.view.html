@@ -6,34 +6,50 @@
 
 
 	<div class ="animated fadeInLeft">
-	   <h5> {{vm.movie.title}} </h5>
-       <img ng-src="https://image.tmdb.org/t/p/w500{{vm.movie.poster_path}}" class="img-fluid float-left" alt="" height="200" width="200" style="margin-right:10px; margin-bottom: 10px">
+	   <p class="h2"> {{vm.movie.title}} </p><br/>
+       <img ng-src="https://image.tmdb.org/t/p/w500{{vm.movie.poster_path}}" class="img-fluid float-left" alt="" height="260" width="260" style="margin-right:10px; margin-bottom: 10px">
 
     </div>
     <div class="text-center">
     	<p style="color: red; text-align: center;">{{vm.favorite.message}}</p>
     	<form ng-submit="vm.onFavorite()">
-	        <button type="submit" class="btn btn-danger btn-sm">
-	          <span class="glyphicon glyphicon-heart" style="color:white"></span> Add to favorites
+	        <button type="submit" class="btn btn-danger btn-sm" style="color:white">
+	          <i class="fa fa-heart" aria-hidden="true"></i> &nbsp; Add to favorites
 	        </button>
 	    </form>
         <br/>
-    	OVERVIEW
-	     	<br/>
+    	   <p class="h6">OVERVIEW</p>
+
 	     	{{vm.movie.overview}}
-	     	<br/>
-	     	RATINGS - {{vm.movie.vote_average}} / 10
-	     	<br/>
-	     	GENRES
-	     	<br/>
+
+        <div class="rating">
+
+    	     	<p class="h6"> RATING - {{vm.movie.vote_average}} / 10 </p>
+
+          <div>
+            <div class="c100 p{{vm.movieRatinPercentage}} small">
+                <span>{{vm.movieRatinPercentage}}%</span>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+          </div>
+      </div>
+      <br/>
+      <div class="text-center genres">
+      <br/>
+	     	<p class="h6"> GENRES </p>
 	     	<span ng-repeat='genre in vm.movie.genre'>
 	    		{{$first ? '' : $last ? ' and ' : ', '}}{{genre}}
 	   		</span>
+      </div>
+    </div>
 
-		<div class="card container" style="margin: 20px 10px">
+		<div class="card container cast" >
 			    <ul class="nav nav-pills card-header-pills">
 					  <li class="nav-item nav-link col-md-10">
-					        Cast
+					        <p class="h5 text-center">CAST</p>
 					  </li>
 			    </ul>
 			</div>
@@ -107,7 +123,7 @@
 		    <div class="form-group row">
 			  <label for="rating" class="col-2 col-form-label text-center" style="font-size: medium;">Ratings</label>
 			  <div class="col-9"  style="border:1px solid #333;">
-			    <input class="form-control" type="number" id="rating" placeholder="Give your ratings from 10" min=0 max=10 ng-model="vm.review.rating">
+			    <input class="form-control" type="number" id="rating" placeholder="Give your ratings on scale of 0 - 10" min=0 max=10 ng-model="vm.review.rating">
 			  </div>
             <button class="btn btn-danger" type="submit" style="margin: 10px 40px;">Submit</button>
 
@@ -115,7 +131,5 @@
 		</form>
 	 </section>
 </div>
-
-<footer style="height: 5%; background-color: black;">
-
-</footer>
+<div style="margin-bottom:4rem;"></div>
+<foot></foot>

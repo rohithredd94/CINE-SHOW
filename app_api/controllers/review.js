@@ -41,7 +41,6 @@ module.exports.postMovieReview = function(req, res) {
 };
 
 module.exports.getMovieReview = function(req, res){
-  console.log("Inside get moview review-db",req.payload.email);
   if (!req.payload._id) {
     res.status(401).json({
       "message" : "UnauthorizedError: private profile"
@@ -51,7 +50,6 @@ module.exports.getMovieReview = function(req, res){
     Review
       .find({user_id:req.payload.email})
       .exec(function(err, data) {
-        console.log("data",data);
         MovieReview = JSON.parse(JSON.stringify(data));
         dummy = [];
         var len = MovieReview.length;
