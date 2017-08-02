@@ -41,7 +41,9 @@
     }
     movieData.getPopularMovie()
       .success(function(data) {
-        console.log("inside get popular",data);
+        data.forEach(function(movie) {
+            movie["movieRatinPercentage"] = movie['vote_average']*10 ;
+        });
         vm.movie = data;
       })
       .error(function (e) {
@@ -49,7 +51,9 @@
       });
     movieData.getLatestMovie()
       .success(function(data) {
-        console.log("inside get latest",data);
+        data.forEach(function(movie) {
+            movie["movieRatinPercentage"] = movie['vote_average']*10 ;
+        });
         vm.latest = data;
       })
       .error(function (e) {

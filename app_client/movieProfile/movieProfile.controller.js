@@ -9,6 +9,7 @@
     var vm = this;
     vm.user = {};
     vm.movie = {};
+    vm.movieRatinPercentage = "";
    console.log("Initialized credentials for review");
     vm.review = {
       email : "",
@@ -227,7 +228,7 @@
         //vm.movie.release_date = '01/01/2000';
 
         console.log(vm.movie);
-
+        vm.movieRatinPercentage = data['vote_average']* 10;
       })
       .error(function (e) {
         console.log(e);

@@ -12,9 +12,14 @@ header{
     height: 0;
 }
 .view-main{
-    
+
     padding-right: 10%;
     padding-left: 10%;
+}
+
+.view-main .main-img{
+  height: 400px;
+  width: 400px;
 }
 section{
     border-bottom: 0;
