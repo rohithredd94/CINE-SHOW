@@ -79,6 +79,14 @@
       });
     }
 
+    var updateMovie = function(data){
+      return $http.post('/api/movies/update/', data , {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
 
     console.log("Hello",getMovieProfile);
     return {
@@ -90,7 +98,8 @@
       getPopularAll : getPopularAll,
       getLatestAll : getLatestAll,
       getTopratedAll : getTopratedAll,
-      getGenreData : getGenreData
+      getGenreData : getGenreData,
+      updateMovie : updateMovie
     };
   }
 

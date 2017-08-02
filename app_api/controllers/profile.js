@@ -38,14 +38,9 @@ module.exports.updateUser = function(req, res) {
         user.bio = req.body.bio;
         console.log(user);
       }
-
       User.update(user_id, {name: req.body.name, bio: req.body.bio}, options, callback);
-
       function callback (err, numAffected) {
-
           res.status(200).json("User Updated");
-
-
       }*/
 
       User.findOne({email:req.body.email})
@@ -64,4 +59,9 @@ module.exports.updateUser = function(req, res) {
 
   }
 
+};
+
+module.exports.uploadFile = function(req, res) {
+  console.log('Inside file');
+  //console.log(req.body);
 };

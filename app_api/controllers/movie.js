@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
+var monk = require('monk');
 var Movie = mongoose.model('moviesData','moviesData');
 var Cast = mongoose.model('cast','cast');
 var Genre = mongoose.model('genres','genres');
 var ReviewData = mongoose.model('reviews','reviews');
+var db = monk('localhost:27017/movies');
 
 
 module.exports.getPopular = function(req, res) {
@@ -187,6 +189,65 @@ module.exports.getGenreData = function(req, res) {
       .exec(function(err, movies){
         res.status(200).json(movies);
       });
+  }
+
+};
+module.exports.updateMovie = function(req, res) {
+  console.log("inside update Movie");
+  var info = {msg: "Success"};
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+      // var id = parseInt(req.params.id);
+      // Movie
+      // .find({genre_ids:id})
+      // .exec(function(err, movies){
+      //   res.status(200).json(movies);
+      // });
+      console.log("got movie", req.body);
+      /*var collection = db.get('moviesData');
+
+      collection.update(
+      {
+        _id: req.body._id
+      },
+      {
+        title: req.body.title,
+        overview: req.body.overview,
+        genre_ids: req.body.genre_ids,
+        release_date: req.body.release_date,
+        image: req.body.image,
+        original_title: req.body.original_title,
+        original_language: req.body.original_language,
+        video: req.body.video,
+        poster_path: req.body.poster_path,
+        vote_average: req.body.vote_average,
+        popularity: req.body.popularity,
+        id: req.body.id,
+        adult: req.body.adult,
+        active: req.body.active,
+        vote_count: req.body.vote_count
+      },function(err, movie){
+        if(err) throw err;
+        res.status(200).json(info);
+      });*/
+      Movie.findOne({id:req.body.id})
+      .exec(function(err, movie){
+        if(movie){
+          movie.title = req.body.title;
+          movie.overview = req.body.overview;
+          movie.genre_ids = req.body.genre_ids;
+          movie.release_date = req.body.release_date;
+          movie.image = req.body.image;
+          movie.save(function(err){
+            res.status(200).json("Movie Updated");
+          })
+        }
+      })
+
+
   }
 
 };
