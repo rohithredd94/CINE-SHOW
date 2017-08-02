@@ -4,8 +4,8 @@
     .module('meanApp')
     .controller('movieCtrl', movieCtrl);
 
-  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication'];
-  function movieCtrl($location, meanData, review, favorite, movieData, authentication) {
+  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication','$route'];
+  function movieCtrl($location, meanData, review, favorite, movieData, authentication,$route) {
     var vm = this;
     vm.user = {};
     vm.movie = {};
@@ -238,6 +238,25 @@
       }
       console.log(typeof(vm.selection));
     };
+
+    vm.deleteMovie = function(){
+      console.log('Delete Movie', vm.movie.id);
+      movieData.deleteMovie(vm.movie.id)
+      .success(function(info){
+        //$location.path('/main');
+        $location.path('/movies/'+vm.movie.id);
+        $route.reload()
+      });
+    }
+
+    vm.showMovie = function(){
+      console.log('Show Movie', vm.movie.id);
+      movieData.showMovie(vm.movie.id)
+      .success(function(info){
+        $location.path('/movies/'+vm.movie.id);
+        $route.reload()
+      });
+    }
 
     movieData.getMovieProfile()
       .success(function(data) {

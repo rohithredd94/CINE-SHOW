@@ -87,6 +87,22 @@
       });
     }
 
+    var deleteMovie = function(id){
+      return $http.get('/api/movies/delete/'+id , {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
+    var showMovie = function(id){
+      return $http.get('/api/movies/show/'+id , {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
 
     console.log("Hello",getMovieProfile);
     return {
@@ -99,7 +115,9 @@
       getLatestAll : getLatestAll,
       getTopratedAll : getTopratedAll,
       getGenreData : getGenreData,
-      updateMovie : updateMovie
+      updateMovie : updateMovie,
+      deleteMovie : deleteMovie,
+      showMovie : showMovie
     };
   }
 

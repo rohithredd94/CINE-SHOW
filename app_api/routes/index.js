@@ -31,7 +31,8 @@ router.post('/movies/', auth, ctrlMovies.getSearch);
 router.get('/movies/popularAll', auth, ctrlMovies.getPopularAll);
 router.get('/movies/topratedAll', auth, ctrlMovies.getTopratedAll);
 router.post('/movies/update', auth, ctrlMovies.updateMovie);
-
+router.get('/movies/delete/:id', auth, ctrlMovies.deleteMovie);
+router.get('/movies/show/:id', auth, ctrlMovies.showMovie);
 router.post('/movies/', auth, ctrlMovies.getSearch);
 
 //genres
