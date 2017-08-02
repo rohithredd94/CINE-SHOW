@@ -30,110 +30,74 @@
           "id" : 28,
           "name" : "Action"
       },
-
-
       {
           "id" : 16,
           "name" : "Animation"
       },
-
-
       {
           "id" : 12,
           "name" : "Adventure"
       },
-
-
       {
           "id" : 35,
           "name" : "Comedy"
       },
-
-
       {
           "id" : 80,
           "name" : "Crime"
       },
-
-
       {
           "id" : 99,
           "name" : "Documentary"
       },
-
-
       {
           "id" : 18,
           "name" : "Drama"
       },
-
-
       {
           "id" : 10751,
           "name" : "Family"
       },
-
-
       {
           "id" : 14,
           "name" : "Fantasy"
       },
-
-
       {
           "id" : 36,
           "name" : "History"
       },
-
-
       {
           "id" : 10752,
           "name" : "War"
       },
-
-
       {
           "id" : 37,
           "name" : "Western"
       },
-
-
       {
           "id" : 10402,
           "name" : "Music"
       },
-
-
       {
           "id" : 9648,
           "name" : "Mystery"
       },
-
-
       {
           "id" : 53,
           "name" : "Thriller"
       },
-
-
       {
           "id" : 10749,
           "name" : "Romance"
       },
-
-
       {
           "id" : 27,
           "name" : "Horror"
       },
-
-
       {
           "id" : 10770,
           "name" : "TV Movie"
       },
-
-
       {
           "id" : 878,
           "name" : "Science Fiction"
@@ -141,7 +105,6 @@
     vm.selection = [];
     meanData.getProfile()
       .success(function(data) {
-        console.log("inside get popular-2",data);
         vm.user = data;
         if(vm.user.email == 'admin@cineshow.com'){
           vm.isAdmin = true;
@@ -157,8 +120,6 @@
       $location.path("/");
     };
     vm.onClickProfile = function(){
-      // console.log("Logging Out");
-      // authentication.logout();
       $location.path("/profile");
     };
 
@@ -206,11 +167,11 @@
       vm.onUpdateMsg = "";
       if(vm.newdate != null){
         var date = vm.newdate.getDate();
-        if(date.length != 2){
+        if(date..toString().length != 2){
           date = '0'+date;
         }
         var month = vm.newdate.getUTCMonth()+1;
-        if(month.length != 2){
+        if(month..toString().length != 2){
           month = '0'+month;
         }
         var year = vm.newdate.getFullYear();
