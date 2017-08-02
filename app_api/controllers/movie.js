@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
+var monk = require('monk');
 var Movie = mongoose.model('moviesData','moviesData');
 var Cast = mongoose.model('cast','cast');
 var Genre = mongoose.model('genres','genres');
 var ReviewData = mongoose.model('reviews','reviews');
+var db = monk('localhost:27017/movies');
 
 
 module.exports.getPopular = function(req, res) {
@@ -15,7 +17,7 @@ module.exports.getPopular = function(req, res) {
     });
   } else {
     Movie
-      .find({release_date :{"$gte": tempdate}}).sort( { vote_average: -1 } ).limit(8)
+      .find({release_date :{"$gte": tempdate}, active:true}).sort( { vote_average: -1 } ).limit(8)
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
@@ -35,7 +37,7 @@ module.exports.getPopularAll = function(req, res) {
     });
   } else {
     Movie
-      .find({release_date :{"$gte": tempdate}}).sort( { vote_average: -1} )
+      .find({release_date :{"$gte": tempdate}, active:true}).sort( { vote_average: -1} )
       .exec(function(err, movie) {
         console.log(movie);
         res.status(200).json(movie);
@@ -52,7 +54,7 @@ module.exports.getLatest = function(req, res) {
     });
   } else {
     Movie
-      .find().sort( { release_date: -1 } ).limit(8)
+      .find({active:true}).sort( { release_date: -1 } ).limit(8)
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
@@ -68,7 +70,7 @@ module.exports.getAll = function(req, res) {
     });
   } else {
     Movie
-      .find()
+      .find({active:true})
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
@@ -85,7 +87,7 @@ module.exports.getSearch = function(req, res) {
     });
   } else {//new RegExp('^'+req.body.query+'$', "i")
     Movie
-      .find({title:new RegExp(req.body.query, 'i')})
+      .find({title:new RegExp(req.body.query, 'i'), active:true})
       .exec(function(err, movie) {
         console.log(movie);
         res.status(200).json(movie);
@@ -151,7 +153,7 @@ module.exports.getLatestAll = function(req, res) {
     });
   } else {
     Movie
-      .find().sort( { release_date: -1 } )
+      .find({active:true}).sort( { release_date: -1 } )
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
@@ -166,7 +168,7 @@ module.exports.getTopratedAll = function(req, res) {
     });
   } else {
     Movie
-      .find().sort( { vote_average: -1 } )
+      .find({active:true}).sort( { vote_average: -1 } )
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
@@ -183,11 +185,71 @@ module.exports.getGenreData = function(req, res) {
   } else {
       var id = parseInt(req.params.id);
       Movie
-      .find({genre_ids:id})
+      .find({genre_ids:id, active:true})
       .exec(function(err, movies){
         res.status(200).json(movies);
       });
   }
 
+};
+module.exports.updateMovie = function(req, res) {
+  console.log("inside update Movie");
+  var info = {msg: "Success"};
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+      console.log("got movie", req.body);
+      Movie.findOne({id:req.body.id})
+      .exec(function(err, movie){
+        if(movie){
+          movie.title = req.body.title;
+          movie.overview = req.body.overview;
+          movie.genre_ids = req.body.genre_ids;
+          movie.release_date = req.body.release_date;
+          movie.image = req.body.image;
+          movie.save(function(err){
+            res.status(200).json("Movie Updated");
+          })
+        }
+      })
+  }
+};
+
+module.exports.deleteMovie = function(req, res){
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie.findOne({id:req.params.id})
+    .exec(function(err, movie){
+      if(movie){
+        movie.active = false;
+        movie.save(function(err){
+            res.status(200).json("Movie Deleted");
+        })
+      }
+    })
+  }
+};
+
+module.exports.showMovie = function(req, res){
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie.findOne({id:req.params.id})
+    .exec(function(err, movie){
+      if(movie){
+        movie.active = true;
+        movie.save(function(err){
+            res.status(200).json("Movie is now available");
+        })
+      }
+    })
+  }
 };
 

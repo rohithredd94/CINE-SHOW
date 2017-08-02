@@ -16,6 +16,7 @@ var ctrlFav = require('../controllers/favorite');
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
 router.post('/profile', auth, ctrlProfile.updateUser);
+router.post('/profile/file', auth, ctrlProfile.uploadFile);
 
 // authentication
 router.post('/register', ctrlAuth.register);
@@ -29,7 +30,9 @@ router.get('/movies/', auth, ctrlMovies.getAll);
 router.post('/movies/', auth, ctrlMovies.getSearch);
 router.get('/movies/popularAll', auth, ctrlMovies.getPopularAll);
 router.get('/movies/topratedAll', auth, ctrlMovies.getTopratedAll);
-
+router.post('/movies/update', auth, ctrlMovies.updateMovie);
+router.get('/movies/delete/:id', auth, ctrlMovies.deleteMovie);
+router.get('/movies/show/:id', auth, ctrlMovies.showMovie);
 router.post('/movies/', auth, ctrlMovies.getSearch);
 
 //genres

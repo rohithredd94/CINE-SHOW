@@ -18,7 +18,8 @@ var moviesSchema = new mongoose.Schema({
   },
   adult: Boolean,
   vote_count: Number,
-  active: Boolean
+  active: Boolean,
+  image: String
 
 });
 
