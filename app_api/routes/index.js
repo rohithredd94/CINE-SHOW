@@ -35,7 +35,12 @@ router.post('/movies/', auth, ctrlMovies.getSearch);
 router.get('/genres',auth, ctrlGenres.getGenres);
 router.get('/movies/:id', auth, ctrlMovies.getMovieProfile);
 //router.get('/movies/cast/:id', auth, ctrlCast.getCastByMovie);
+
+//Reviews
 router.post('/movies/review',  ctrlReview.postMovieReview);
+router.get('/profile/review',  auth, ctrlReview.getMovieReview);
+
+//Favourites
 router.post('/movies/favorite',  ctrlFav.postFavorite);
 router.get('/favorites/:userid',ctrlFav.getFavorites);
 
