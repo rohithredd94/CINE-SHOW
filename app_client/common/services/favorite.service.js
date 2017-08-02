@@ -13,18 +13,25 @@
       });
     };
 
-    var getFavorites = function () {
-      console.log("User Email: ",$routeParams.user_id);
-      return $http.get('/api/favorites/'+$routeParams.user_id , {
+    var getFavorites = function (id) {
+      //console.log("User Email: ",$routeParams.user_id);
+      return $http.get('/api/favorites/'+$routeParams.user_id, {
         headers: {
           Authorization: 'Bearer '+ authentication.getToken()
         }
       });
     };
 
+    var deleteFavorite = function (favdata) {
+       return $http.post('/api/favorites/delete', favdata).success(function(data){
+        saveToken(data.token);
+      });
+    };
+
     return {
       postFavorite : postFavorite,
-      getFavorites : getFavorites
+      getFavorites : getFavorites,
+      deleteFavorite : deleteFavorite
     };
   }
 
