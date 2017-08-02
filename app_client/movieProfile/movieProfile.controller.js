@@ -167,11 +167,11 @@
       vm.onUpdateMsg = "";
       if(vm.newdate != null){
         var date = vm.newdate.getDate();
-        if(date..toString().length != 2){
+        if(date.toString().length != 2){
           date = '0'+date;
         }
         var month = vm.newdate.getUTCMonth()+1;
-        if(month..toString().length != 2){
+        if(month.toString().length != 2){
           month = '0'+month;
         }
         var year = vm.newdate.getFullYear();
