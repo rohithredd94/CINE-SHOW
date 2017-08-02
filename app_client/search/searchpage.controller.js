@@ -40,6 +40,7 @@
     console.log(vm.search);*/
     vm.dummyItems = [];
     vm.searchData = {};
+    vm.infomsg = "";
     for (var i = 1; i <= 151; i++) {
         vm.dummyItems.push(i);
     }
@@ -56,7 +57,11 @@
     $rootScope.$on('search_event',function(){
       console.log('Event Triggered');
       vm.searchData = searchservice.getData();
-      console.log(vm.searchData);
+      if(vm.searchData.length == 0){
+        vm.infomsg = "No results found";
+      }else{
+        vm.infomsg = "Search returned "+vm.searchData.length+" results";
+      }
       vm.pager = {};
       vm.setPage = setPage;
 

@@ -1,6 +1,6 @@
-<div class="container search" style="padding: 0;">
+<div class="search" style="padding: 0;">
     <div class="row" style="position: relative;">
-        <div class="col-xs-12">
+        <div class="container">
         <form ng-submit="shvm.onSearch()">
 		    <div class="input-group">
                 <div class="input-group-btn">
@@ -43,10 +43,9 @@
       </form>
     </div>
   </div> -->
-  <div>
-
-   <ul class="artistlist" ng-show="focused"  style="position: absolute; top: 100%; z-index: 100;">
-    <li ng-animate="'animate'" class="artist cf" ng-focus="focused=true" ng-click="focused=true" ng-repeat="item in shvm.movie | filter: query | limitTo:5" style="height: 100%; height: 100%;  background-color: white;">
+  <div style="position: relative;">
+   <ul class="artistlist" ng-show="focused" style="position:absolute; top: 100%; width: 58%; z-index: 100; left:3%;">
+    <li ng-animate="'animate'" class="artist cf" ng-focus="focused=true" ng-repeat="item in shvm.movie | filter: query | limitTo:5" style="height: 100%; height: 100%;  background-color: white;">
       <a ng-href="/movies/{{item.id}}" style="display: inline-block;">
         <div class="info row">
           <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-fluid" alt="Photo of {{item.title}}" style="height: 50px; width: 70px; padding-left: 20px;">

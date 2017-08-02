@@ -21,6 +21,13 @@
         }
       });
     };
+    var getTopratedAll = function () {
+      return $http.get('/api/movies/topratedAll', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
     var getLatestMovie = function () {
       return $http.get('/api/movies/latest', {
         headers: {
@@ -64,6 +71,14 @@
       });
     };
 
+    var getGenreData = function(id){
+      return $http.get('/api/genres/'+id , {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
 
     console.log("Hello",getMovieProfile);
     return {
@@ -73,7 +88,9 @@
       getSearch : getSearch,
       getMovieProfile : getMovieProfile,
       getPopularAll : getPopularAll,
-      getLatestAll : getLatestAll
+      getLatestAll : getLatestAll,
+      getTopratedAll : getTopratedAll,
+      getGenreData : getGenreData
     };
   }
 

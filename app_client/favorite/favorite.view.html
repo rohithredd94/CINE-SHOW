@@ -1,4 +1,3 @@
-<span id='top'></span>
 <navigation></navigation><br><br><br>
 <search></search>
 
@@ -16,7 +15,6 @@
                 <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}">
 
             </div> -->
-    <span>{{vm.infomsg}}</span>
     <section>
       <div class="container search_content" ng-repeat="item in vm.items">
         <div class="card">
@@ -32,6 +30,7 @@
                 <p class="card-text">{{item.overview}}</p>
                 <p class="card-text">Rating:{{item.vote_average}}</p>
                 <a href="#" class="btn btn-primary">Read More</a>
+                <a href="#" class="btn btn-danger" style="align-content: right">Delete From Favorites</a>
               </div>
             </div>
 

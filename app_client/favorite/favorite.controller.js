@@ -2,14 +2,15 @@
 
   angular
     .module('meanApp')
-    .controller('popularCtrl', popularCtrl);
+    .controller('favCtrl', favCtrl);
   
-  popularCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','$window','$timeout','$scope','pager','$anchorScroll'];
-  function popularCtrl($location, meanData, movieData, authentication,searchservice,$rootScope,$window,$timeout,$scope,pager,$anchorScroll) {
+  favCtrl.$inject = ['$location', 'meanData', 'favorite','authentication','searchservice','$rootScope','$window','$timeout','$scope','pager'];
+  function favCtrl($location, meanData, favorite, authentication,searchservice,$rootScope,$window,$timeout,$scope,pager) {
     var vm = this;
     vm.movie = {};
-    movieData.getPopularAll()
+    favorite.getFavorites()
             .success(function(data){
+                console.log("inside popular all",data);
                 vm.movie = data;
                 vm.pager = {};
                 vm.setPage = setPage;
@@ -43,8 +44,6 @@
  
         // get current page of items
         vm.items = vm.movie.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
-        $location.hash('top');
-        $anchorScroll();
     }
   }
 

@@ -4,8 +4,8 @@
     .module('meanApp')
     .controller('latestCtrl', latestCtrl);
 
-  latestCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','$window','$timeout','$scope','pager'];
-  function latestCtrl($location, meanData, movieData, authentication,searchservice,$rootScope,$window,$timeout,$scope,pager) {
+  latestCtrl.$inject = ['$location', 'meanData', 'movieData','authentication','searchservice','$rootScope','$window','$timeout','$scope','pager','$anchorScroll'];
+  function latestCtrl($location, meanData, movieData, authentication,searchservice,$rootScope,$window,$timeout,$scope,pager,$anchorScroll) {
     var vm = this;
     vm.latest = {};
     movieData.getLatestAll()
@@ -44,6 +44,9 @@
 
         // get current page of items
         vm.items = vm.latest.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+
+        $location.hash('top');
+        $anchorScroll();
     }
   }
 

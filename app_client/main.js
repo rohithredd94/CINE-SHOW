@@ -40,6 +40,11 @@
         controller: 'movieCtrl',
         controllerAs: 'vm'
       })
+      .when('/favorites/:user_id', {
+        templateUrl: '/favorite/favorite.view.html',
+        controller: 'favCtrl',
+        controllerAs: 'vm'
+      })
       .when('/popular', {
         templateUrl: '/popular/popular.view.html',
         controller: 'popularCtrl',
@@ -48,6 +53,16 @@
       .when('/latest', {
         templateUrl: '/latest/latest.view.html',
         controller: 'latestCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/toprated', {
+        templateUrl: '/toprated/toprated.view.html',
+        controller: 'topratedCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/genres/:id', {
+        templateUrl: '/genres/genres.view.html',
+        controller: 'genresCtrl',
         controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/'});
