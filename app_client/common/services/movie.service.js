@@ -103,6 +103,23 @@
       });
     }
 
+    var addMovie = function(data){
+      console.log(data);
+      return $http.post('/api/movies/add/', data , {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
+    var addCast = function(data){
+      return $http.post('/api/movies/addCast/', data , {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
 
     console.log("Hello",getMovieProfile);
     return {
@@ -117,7 +134,9 @@
       getGenreData : getGenreData,
       updateMovie : updateMovie,
       deleteMovie : deleteMovie,
-      showMovie : showMovie
+      showMovie : showMovie,
+      addMovie : addMovie,
+      addCast : addCast
     };
   }
 

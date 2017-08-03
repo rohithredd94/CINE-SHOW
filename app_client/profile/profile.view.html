@@ -85,7 +85,7 @@
 
   </div>
   <div class="col-sm-3">
-    <a ng-show="vm.isAdmin" class="btn btn-danger" ng-click="vm.onUpdateMsg = ''" href="/moviesAll">List All Movies</a>
+    <a ng-show="vm.isAdmin" class="btn btn-danger" ng-click="vm.onUpdateMsg = ''" href="/allMovies">List All Movies</a>
     <button type="button" ng-show="vm.isAdmin" class="btn btn-danger" data-toggle="modal" data-target="#modalAddForm" ng-click="vm.onUpdateMsg = ''">Add Movie</button>
 
     <div class="modal animated fadeIn" id="modalAddForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -117,9 +117,12 @@
 
                     <i class="fa fa-pencil prefix"></i>
                     <label>Genres</label>
-                    <ul style="display: block;" ng-repeat="genre in vm.newgenres">
-                      <li><input type="checkbox" name="selectedGenres[]" value="{{genre.id}}" ng-checked="vm.selection.indexOf(genre.id) > -1" ng-click="vm.toggleSelection(genre.id)"> {{genre.name}}</li>
-                    </ul>
+                    <div ng-repeat="items in vm.test" class="row">
+                        <div ng-repeat="item in items" class="col-md-4">
+                            <input type="checkbox" name="selectedGenres[]" value="{{item.id}}" ng-checked="vm.selection.indexOf(item.id) > -1" ng-click="vm.toggleSelection(item.id)"> {{item.name}}
+                        </div>
+                    </div>
+                    <input type="checkbox" name="selectedGenres[]" value="878" ng-checked="vm.selection.indexOf(878) > -1" ng-click="vm.toggleSelection(878)"> Science Fiction
 
                     <div class="md-form form-sm">
                         <i class="fa fa-key prefix"></i>
@@ -127,6 +130,18 @@
                         <label for="form21">Image</label>
                     </div>
 
+                    <i class="fa fa-pencil prefix"></i>
+                    <label>Cast</label>
+                    <fieldset data-ng-repeat = "choice in vm.choices">
+                        <div class="col-md-12">
+                            <input type="text" ng-model="choice.character" name="" placeholder="Enter cast role" class="col-md-5" required />
+                            <input type="text" ng-model="choice.name" name="" placeholder="Enter cast name" class="col-md-4" required />
+                            
+                        <a class="remove col-md-1" ng-show="$last && vm.choices.length > 5" ng-click="vm.removeChoice()" style="background: #C76868;color: #FFF; font-weight: bold; font-size: 21px;
+                            border: 0; cursor: pointer; display: inline-block; padding: 4px 9px; vertical-align: top; line-height: 100%; ">&nbsp;-</a></div>
+                    </fieldset>
+
+                    <a class="addfields btn btn-info" ng-click="vm.addNewChoice()">Add fields</a><br>
                     <!-- <div class="md-form form-sm">
                         <i class="fa fa-pencil prefix"></i>
                         <input type="date" id="form21" class="form-control" ng-model="vm.user.password">
@@ -139,7 +154,7 @@
                     <span>{{vm.onUpdateMsg}}</span>
                     <div class="text-center mt-1-half">
 
-                        <button class="btn btn-info mb-2" type="submit">Update <i class="fa fa-pencil-square-o ml-1"></i></button>&nbsp;
+                        <button class="btn btn-info mb-2" type="submit">Add Movie <i class="fa fa-pencil-square-o ml-1"></i></button>&nbsp;
                         <button class="btn btn-info mb-2" ng-click="vm.clearMessage()" data-dismiss="modal">Done <i class="fa fa-pencil-square-o ml-1"></i></button>
                     </div>
 

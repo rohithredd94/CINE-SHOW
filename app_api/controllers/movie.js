@@ -253,3 +253,51 @@ module.exports.showMovie = function(req, res){
   }
 };
 
+module.exports.addMovie = function(req, res){
+  console.log("inside add movie");
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  }else{
+    var movie  = new Movie();
+
+    movie.title = req.body.title;
+    movie.overview = req.body.overview;
+    movie.genre_ids = req.body.genre_ids;
+    movie.release_date = req.body.release_date;
+    movie.image = req.body.image;
+    movie.id = req.body.id;
+    movie.active = true;
+    movie.vote_average = 0;
+    movie.vote_count = 0;
+    movie.poster_path = req.body.poster_path;
+
+    console.log(movie);
+
+    movie.save(function(err){
+      res.status(200).json("Movie Added");
+    })    
+  }
+};
+
+module.exports.addCast = function(req, res){
+  console.log("inside add cast");
+  console.log("inside add movie");
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  }else{
+    var newcast = new Cast();
+
+    newcast.cast = req.body.cast;
+    newcast.id = req.body.id;
+    console.log(newcast);
+
+    newcast.save(function(err){
+      res.status(200).json("Cast Added");
+    });
+  }
+}
+

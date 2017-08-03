@@ -154,7 +154,8 @@
         .postMovieReview(vm.review)
         .success(function(){
           console.log("Inside success");
-          $location.path("/main");
+          //$location.path("/main");
+          $route.reload();
         })
         .error(function(err){
           console.log(err.message);
