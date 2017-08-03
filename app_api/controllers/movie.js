@@ -86,8 +86,24 @@ module.exports.getSearch = function(req, res) {
       "message" : "UnauthorizedError: private profile"
     });
   } else {//new RegExp('^'+req.body.query+'$', "i")
+    var filter = req.body.filter;
+    var query = [];
+    if(filter == '$'){
+      console.log(filter, "any");
+      query = [{
+        "title": new RegExp(req.body.query, 'i')},
+        {"overview": new RegExp(req.body.query, 'i')
+      }];
+    }else{
+    var query = [];
+    var query1 = {};
+    query1[filter] = new RegExp(req.body.query, 'i');
+    query.push(query1);
+    }
+    console.log(query);
+    //{title:new RegExp(req.body.query, 'i'), active:true}
     Movie
-      .find({title:new RegExp(req.body.query, 'i'), active:true})
+      .find({$and:[{$or: query},{active: true}]})
       .exec(function(err, movie) {
         console.log(movie);
         res.status(200).json(movie);
@@ -252,4 +268,3 @@ module.exports.showMovie = function(req, res){
     })
   }
 };
-

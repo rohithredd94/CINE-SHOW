@@ -11,14 +11,18 @@
     vm.isLoggedIn = authentication.isLoggedIn();
 
     vm.currentUser = authentication.currentUser();
-
+    $scope.query = {};
+    $scope.queryBy = '$';
     vm.movie = {};
     vm.search = {
-      query : ""
+      query : "",
+      filter : ""
     };
     vm.searchData = {};
     vm.show = true;
-
+    $scope.change = function(){
+      $scope.query = {};
+    }
     movieData.getAll()
       .success(function(data) {
         console.log("inside get all",data);
