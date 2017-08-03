@@ -3,49 +3,32 @@
 <search></search>
 
 <div class="hm-black-light view-main col-md-12">
-<!-- <p ng-repeat="search in shvm.searchData">{{search.title}}</p> -->
-<!-- <p ng-repeat="search1 in vm.searchData">{{search1.title}}</p> -->
-
-
 <div class="container">
     <div >
 
-        <!-- items being paged -->
-        <!-- <div class="card" ng-repeat="item in vm.items">{{item.title}}</div><br> -->
-        <!-- <div class="card" ng-repeat="item in vm.items">
-                <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}">
+        <section>
+        <br><span>We found {{vm.all.length}} movies in this category</span><br><br>
+          <div class="container search_content" ng-repeat="item in vm.items">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card-img-bottom">
+                    <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-thumbnail">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-block">
+                    <h4 class="card-title">{{item.title}}</h4>
+                    <p class="card-text">{{item.overview}}</p>
+                    <p class="card-text">Rating:{{item.vote_average}}</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                  </div>
+                </div>
 
-            </div> -->
-    <section>
-    <br><span>We found {{vm.items.length}} movies in this category</span><br><br>
-      <div class="container search_content" ng-repeat="item in vm.items">
-        <div class="card">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card-img-bottom">
-                <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-thumbnail">
               </div>
             </div>
-            <div class="col-md-8">
-              <div class="card-block">
-                <h4 class="card-title">{{item.title}}</h4>
-                <p class="card-text">{{item.overview}}</p>
-                <p class="card-text">Rating:{{item.vote_average}}</p>
-                <a href="/movies/{{item.id}}" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-
           </div>
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-
-
+        </section>
         <!-- pager -->
         <!-- <ul ng-if="vm.pager.pages.length" class="pagination">
             <li ng-class="{disabled:vm.pager.currentPage === 1}">

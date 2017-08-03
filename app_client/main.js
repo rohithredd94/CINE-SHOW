@@ -70,6 +70,11 @@
         controller: 'castCtrl',
         controllerAs: 'vm'
       })
+      .when('/allmovies', {
+        templateUrl: '/allmovies/allmovies.view.html',
+        controller: 'allMoviesCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API

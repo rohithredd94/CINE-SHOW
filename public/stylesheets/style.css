@@ -1,12 +1,8 @@
-
-
-
 .wow {
   visibility: hidden;
 }
 
 /* TEMPLATE STYLES */
-
 html,
 body,
 header,
@@ -16,11 +12,7 @@ header,
 
 }
 
-
 /* Navigation*/
-
-
-
 .full-bg-img {
     color: #fff;
 }
@@ -77,8 +69,6 @@ footer.page-footer {
   z-index: 100;
   /*left:3%;*/
   width: 100%;
-
-
 }
 
 .card-img-bottom {
@@ -146,6 +136,16 @@ footer.page-footer {
   padding-left:10rem;
 }
 
+<<<<<<< HEAD
 .fav_nofav{
   margin:10rem 10rem;
 }
+=======
+/*pagination*/
+.my-4{
+  
+  margin: 0 auto;
+  /*margin-left: auto;
+  margin-right: auto;*/
+}
+>>>>>>> ab6567cc1d4069f5fee09bbff137c51bc4ae2203

@@ -4,8 +4,8 @@
     .module('meanApp')
     .controller('movieCtrl', movieCtrl);
 
-  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication','$route'];
-  function movieCtrl($location, meanData, review, favorite, movieData, authentication,$route) {
+  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication','$route','$timeout'];
+  function movieCtrl($location, meanData, review, favorite, movieData, authentication,$route,$timeout) {
     var vm = this;
     vm.user = {};
     vm.movie = {};
@@ -25,7 +25,7 @@
     };
     vm.newdate = "";
     vm.isAdmin = false;
-
+    vm.editReview = {};
     vm.newgenres = [
       {
           "id" : 28,
@@ -103,6 +103,7 @@
           "id" : 878,
           "name" : "Science Fiction"
       }];
+    vm.showEdit = false;
     vm.selection = [];
     meanData.getProfile()
       .success(function(data) {
@@ -122,6 +123,19 @@
     };
     vm.onClickProfile = function(){
       $location.path("/profile");
+    };
+
+    vm.edit = function(review){
+      vm.editReview = review;
+      vm.showEdit = true;
+    };
+
+    vm.updateReview = function(){
+      review.updateReview(vm.editReview)
+      .success(function(info){
+        console.log('Review Edited');
+        $route.reload();
+      });
     };
 
      vm.onFavorite = function () {
@@ -155,8 +169,8 @@
         .postMovieReview(vm.review)
         .success(function(){
           console.log("Inside success");
-          $location.path('/movies/'+vm.movie.id);
-          $route.reload()
+          //$location.path("/main");
+          $route.reload();
         })
         .error(function(err){
           console.log(err.message);
@@ -221,15 +235,21 @@
         $route.reload()
       });
     }
-
+    vm.showWriteReview = true;
     movieData.getMovieProfile()
       .success(function(data) {
         vm.movie = data;
         vm.date = vm.movie.release_date;
         //vm.movie.release_date = vm.movie.release_date.replace('-','/').replace('-','/');
         //vm.movie.release_date = '01/01/2000';
-
-        console.log(vm.movie);
+        var reviews = vm.movie.reviews;
+        console.log("Movie profile",reviews);
+        for(var i=0;i < reviews.length && vm.showWriteReview; i++){
+          if(reviews[i].user_id == vm.user.email){
+            vm.showWriteReview = false;
+          }
+        }
+        
         vm.movieRatinPercentage = data['vote_average']* 10;
       })
       .error(function (e) {

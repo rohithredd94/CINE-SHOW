@@ -32,9 +32,12 @@ router.post('/movies/', auth, ctrlMovies.getSearch);
 router.get('/movies/popularAll', auth, ctrlMovies.getPopularAll);
 router.get('/movies/topratedAll', auth, ctrlMovies.getTopratedAll);
 router.post('/movies/update', auth, ctrlMovies.updateMovie);
+router.post('/movies/add', auth, ctrlMovies.addMovie);
 router.get('/movies/delete/:id', auth, ctrlMovies.deleteMovie);
 router.get('/movies/show/:id', auth, ctrlMovies.showMovie);
 router.post('/movies/', auth, ctrlMovies.getSearch);
+router.post('/movies/addCast', auth, ctrlMovies.addCast);
+router.get('/movies/All', auth, ctrlMovies.getAllMovies);
 
 //genres
 router.get('/genres',auth, ctrlGenres.getGenres);
@@ -45,6 +48,7 @@ router.get('/movies/:id', auth, ctrlMovies.getMovieProfile);
 //Reviews
 router.post('/movies/review',  ctrlReview.postMovieReview);
 router.get('/profile/review',  auth, ctrlReview.getMovieReview);
+router.post('/review/update',  auth, ctrlReview.updateReview);
 
 //Favourites
 router.post('/movies/favorite',  ctrlFav.postFavorite);
