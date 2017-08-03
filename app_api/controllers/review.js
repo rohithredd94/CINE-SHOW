@@ -44,7 +44,7 @@ module.exports.postMovieReview = function(req, res) {
         }
     })
   })
-	
+
 };
 
 module.exports.getMovieReview = function(req, res){
@@ -60,12 +60,15 @@ module.exports.getMovieReview = function(req, res){
         MovieReview = JSON.parse(JSON.stringify(data));
         dummy = [];
         var len = MovieReview.length;
+        var i = 0;
         MovieReview.forEach(function(value){
           Movie.findOne({id:value['movie_id']})
           .exec(function(err, final) {
+            i = i + 1;
             value['movieName'] = final['original_title'];
-            dummy.push(value);
-            if (dummy.length == len){
+            if(final.active)
+              dummy.push(value);
+            if (i == len){
                 res.status(200).json(dummy);
             }
           });
@@ -102,7 +105,7 @@ module.exports.updateReview = function(req, res){
 
         movie.save(function(err){
           if(err) throw err;
-        });        
+        });
 
         review.save(function(err){
           if (err)
@@ -116,4 +119,3 @@ module.exports.updateReview = function(req, res){
     });
   }
 };
-

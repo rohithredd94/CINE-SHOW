@@ -29,6 +29,8 @@
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalContactForm">
         Edit
     </button>
+    <a ng-show="vm.isAdmin" class="btn btn-danger" ng-click="vm.onUpdateMsg = ''" href="/allmovies">List All Movies</a>
+    <button type="button" ng-show="vm.isAdmin" class="btn btn-danger" data-toggle="modal" data-target="#modalAddForm" ng-click="vm.onUpdateMsg = ''">Add Movie</button>
     <!--Modal: Contact form-->
     <div class="modal animated fadeIn" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal" role="document">
@@ -85,8 +87,7 @@
 
   </div>
   <div class="col-sm-3">
-    <a ng-show="vm.isAdmin" class="btn btn-danger" ng-click="vm.onUpdateMsg = ''" href="/allmovies">List All Movies</a>
-    <button type="button" ng-show="vm.isAdmin" class="btn btn-danger" data-toggle="modal" data-target="#modalAddForm" ng-click="vm.onUpdateMsg = ''">Add Movie</button>
+
 
     <div class="modal animated fadeIn" id="modalAddForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal" role="document">
@@ -136,7 +137,7 @@
                         <div class="col-md-12">
                             <input type="text" ng-model="choice.character" name="" placeholder="Enter cast role" class="col-md-5" required />
                             <input type="text" ng-model="choice.name" name="" placeholder="Enter cast name" class="col-md-4" required />
-                            
+
                         <a class="remove col-md-1" ng-show="$last && vm.choices.length > 5" ng-click="vm.removeChoice()" style="background: #C76868;color: #FFF; font-weight: bold; font-size: 21px;
                             border: 0; cursor: pointer; display: inline-block; padding: 4px 9px; vertical-align: top; line-height: 100%; ">&nbsp;-</a></div>
                     </fieldset>
