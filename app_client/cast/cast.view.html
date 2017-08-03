@@ -1,0 +1,20 @@
+<navigation></navigation><br><br><br>
+<search></search>
+<div class="card container cast" >
+	    <ul class="nav nav-pills card-header-pills">
+			  <li class="nav-item nav-link col-md-12">
+			        <p class="h5 text-center">CAST</p>
+			  </li>
+	    </ul>
+	</div>
+<div class="card-deck container" style="margin-bottom: 20px">
+
+    <div class="card col-lg-6" ng-repeat='cast in vm.moviecast.cast'>
+      <img class="card-img-top" data-sizes="auto" ng-src="https://image.tmdb.org/t/p/w500{{cast.profile_path}}" onerror="this.src='images/profile_photo.png'" alt="Card image cap" style="image-rendering: crisp-edges;" width="2048" height="2048">
+      <div class="card-block">
+      <h4 class="card-title">{{cast.character}}</h4>
+        <p class="card-text">{{cast.name}}</p>
+      </div>
+    </div>
+</div>
+<foot></foot>

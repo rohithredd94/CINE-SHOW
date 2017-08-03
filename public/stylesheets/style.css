@@ -133,9 +133,14 @@ footer.page-footer {
 
 .cast{
   margin: 2rem 1rem;
-  padding-left:10rem;"
+  padding-left:10rem;
 }
 
+<<<<<<< HEAD
+.fav_nofav{
+  margin:10rem 10rem;
+}
+=======
 /*pagination*/
 .my-4{
   
@@ -143,3 +148,4 @@ footer.page-footer {
   /*margin-left: auto;
   margin-right: auto;*/
 }
+>>>>>>> ab6567cc1d4069f5fee09bbff137c51bc4ae2203
