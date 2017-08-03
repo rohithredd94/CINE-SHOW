@@ -16,8 +16,9 @@
                 <div class="card card-cascade narrower animated fadeInUp">
                   <div class="view overlay hm-black-light ">
 
-                        <img ng-src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-fluid main-img" alt="">
-
+                        <!-- <img ng-src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-fluid main-img" alt=""> -->
+                    <img ng-hide="movie.image" ng-src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-fluid main-img" alt="Movie Poster">
+                    <img ng-show="movie.image" ng-src="images/{{movie.image}}" class="img-fluid main-img" alt="Movie Poster">
                         <div class="mask flex-center">
                             <!-- <p class="h4-responsive white-text" >Title: {{movie.title}}</p>
                             <p class="h6-responsive white-text" >Rating: {{movie.vote_average}}/10</p> -->
@@ -132,7 +133,8 @@
               <div class="col-lg-3 col-md-6 mb-r" ng-repeat='latest in vm.latest'>
                 <div class="card card-cascade narrower animated fadeInUp">
                   <div class="view overlay hm-black-light ">
-                    <img ng-src="https://image.tmdb.org/t/p/w500{{latest.poster_path}}" class="img-fluid main-img" alt="">
+                    <img ng-hide="latest.image" ng-src="https://image.tmdb.org/t/p/w500{{latest.poster_path}}" class="img-fluid main-img" alt="Movie Poster">
+                    <img ng-show="latest.image" ng-src="images/{{latest.image}}" class="img-fluid main-img" alt="Movie Poster">
                     <div class="mask flex-center">
                         <!-- <h5 class="white-text">{{latest.title}}</h5> -->
                         <div class="c100 p{{latest.movieRatinPercentage}}">

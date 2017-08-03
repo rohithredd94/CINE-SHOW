@@ -4,10 +4,12 @@
 
  <section class="section" style="margin-bottom: 0px; margin-top: 50px">
 
-
+    <!-- ng-src="https://image.tmdb.org/t/p/w500{{vm.movie.poster_path}} onerror="this.src='images/{{vm.movie.image}}'"" -->
    <div class ="animated fadeInLeft">
  	   <p class="h2"> {{vm.movie.title}} </p><br/>
-        <img ng-src="https://image.tmdb.org/t/p/w500{{vm.movie.poster_path}}" class="img-fluid float-left" alt="" height="260" width="260" style="margin-right:10px; margin-bottom: 10px">
+        <img ng-hide="vm.movie.image" ng-src="https://image.tmdb.org/t/p/w500{{vm.movie.poster_path}}" class="img-fluid float-left" alt="" height="260" width="260" style="margin-right:10px; margin-bottom: 10px">
+
+        <img ng-show="vm.movie.image" ng-src="images/{{vm.movie.image}}" class="img-fluid float-left" alt="" height="260" width="260" style="margin-right:10px; margin-bottom: 10px">
 
      </div>
      <div class="text-center">

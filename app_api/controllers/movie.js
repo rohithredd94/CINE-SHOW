@@ -47,14 +47,16 @@ module.exports.getPopularAll = function(req, res) {
 };
 
 module.exports.getLatest = function(req, res) {
-
+  var tempdate = new Date();
+  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate = tempdate.toISOString();
   if (!req.payload._id) {
     res.status(401).json({
       "message" : "UnauthorizedError: private profile"
     });
   } else {
     Movie
-      .find({active:true}).sort( { release_date: -1 } ).limit(8)
+      .find({release_date :{"$gte": tempdate}, active:true}).sort( { release_date: -1 } ).limit(8)
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
@@ -162,23 +164,34 @@ module.exports.getMovieProfile = function(req, res) {
       Movie
       .findOne({id:req.params.id})
       .exec(function(err, movie) {
-        movieData = JSON.parse(JSON.stringify(movie));
-        movieData['genre'] = [];
-        movieData['genre_ids'].forEach(function(value){
-          //console.log(value);
-          Genre.findOne({id:value})
-          .exec(function(err,genre){
-            //console.log(genre['name']);
-            //movieData['genre'] = genre['name'];
-            genres.push(genre['name']);
-          })
-        });
+            
+            if(movie == null){
+              res.status(404).json(err);
+            }else{
+              movieData = JSON.parse(JSON.stringify(movie));
+              movieData['genre'] = [];
+              movieData['genre_ids'].forEach(function(value){
+                //console.log(value);
+                Genre.findOne({id:value})
+                .exec(function(err,genre){
+
+
+                  //console.log(genre['name']);
+                  //movieData['genre'] = genre['name'];
+                  genres.push(genre['name']);
+                })
+              });
+            }
        // res.status(200).json(movie);
       })
       .then(function(){
          movieData['reviews'] = {};
          ReviewData.find({movie_id:req.params.id}).sort({created_date: -1}).limit(5)
          .exec(function(err,review){
+
+            if(err){
+              res.status(404).json(err);
+            }
             movieData['reviews'] = review;
             //console.log(movieData);
             //res.status(200).json(movieData);
@@ -187,9 +200,11 @@ module.exports.getMovieProfile = function(req, res) {
 
             Cast.findOne({id:req.params.id})
               .exec(function(err, cast) {
+                if(cast != null){
                 movieData['cast'] = cast['cast'];
                 //console.log('----CAST----',cast['cast']);
                 res.status(200).json(movieData);
+              }
 
               });
 
@@ -199,14 +214,16 @@ module.exports.getMovieProfile = function(req, res) {
 };
 
 module.exports.getLatestAll = function(req, res) {
-
+  var tempdate = new Date();
+  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate = tempdate.toISOString();
   if (!req.payload._id) {
     res.status(401).json({
       "message" : "UnauthorizedError: private profile"
     });
   } else {
     Movie
-      .find({active:true}).sort( { release_date: -1 } )
+      .find({release_date :{"$gte": tempdate}, active:true}).sort( { release_date: -1 } )
       .exec(function(err, movie) {
 
         res.status(200).json(movie);

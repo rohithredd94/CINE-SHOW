@@ -254,6 +254,7 @@
       })
       .error(function (e) {
         console.log(e);
+        $location.path("/main");
       });
   }
 
