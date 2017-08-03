@@ -147,7 +147,8 @@
         .postFavorite(vm.favorite)
         .success(function(){
           console.log("Inside success");
-          $location.path("/main");
+          $location.path('/movies/'+vm.movie.id);
+          $route.reload()
         })
         .error(function(err){
           console.log(err.message);

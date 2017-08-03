@@ -4,10 +4,24 @@
     .module('meanApp')
     .controller('favCtrl', favCtrl);
   
-  favCtrl.$inject = ['$location', 'meanData', 'favorite','authentication','searchservice','$rootScope','$window','$timeout','$scope','pager'];
-  function favCtrl($location, meanData, favorite, authentication,searchservice,$rootScope,$window,$timeout,$scope,pager) {
+  favCtrl.$inject = ['$location', 'meanData', 'favorite','authentication','searchservice','$route','$rootScope','$window','$timeout','$scope','pager'];
+  function favCtrl($location, meanData, favorite, authentication,searchservice,$route,$rootScope,$window,$timeout,$scope,pager) {
     var vm = this;
     vm.movie = {};
+    vm.deleteFavorite = {
+      movie_id : "",
+      user_id : ""
+    }
+
+    meanData.getProfile()
+      .success(function(data) {
+        console.log("inside get popular-2",data);
+        vm.user = data;
+      })
+      .error(function (e) {
+        console.log(e);
+      });
+
     favorite.getFavorites()
             .success(function(data){
                 console.log("inside popular all",data);
@@ -21,7 +35,21 @@
               console.log(e);
             });
 
-    
+    vm.deleteFav = function(id){
+
+      vm.deleteFavorite.movie_id = id;
+      vm.deleteFavorite.user_id = vm.user.email;
+
+      //console.log('Delete Movie', vm.deleteFavorite);
+      favorite.
+      deleteFavorite(vm.deleteFavorite)
+      .success(function(info){
+        $location.path('/main');
+        console.log("/favorites/"+vm.user.email);
+        $location.path('/favorites/'+vm.user.email);
+        $route.reload()
+      });
+    }
 
     function initController() {
         // initialize to page 1

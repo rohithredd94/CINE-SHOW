@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var monk = require('monk');
+//var monk = require('monk');
 var Movie = mongoose.model('moviesData','moviesData');
 var Cast = mongoose.model('cast','cast');
 var Genre = mongoose.model('genres','genres');
 var ReviewData = mongoose.model('reviews','reviews');
-var db = monk('localhost:27017/movies');
+//var db = monk('localhost:27017/movies');
 
 
 module.exports.getPopular = function(req, res) {

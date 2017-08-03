@@ -51,6 +51,7 @@ router.post('/review/update',  auth, ctrlReview.updateReview);
 
 //Favourites
 router.post('/movies/favorite',  ctrlFav.postFavorite);
-router.get('/favorites/:user_id',auth,ctrlFav.getFavorites);
+router.get('/favorites/:user_id',auth, ctrlFav.getFavorites);
+router.post('/favorites/delete', ctrlFav.deleteFavorite);
 
 module.exports = router;

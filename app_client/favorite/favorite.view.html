@@ -16,27 +16,36 @@
 
             </div> -->
     <section>
-      <div class="container search_content" ng-repeat="item in vm.items">
-        <div class="card">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card-img-bottom">
-                <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-thumbnail">
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card-block">
-                <h4 class="card-title">{{item.title}}</h4>
-                <p class="card-text">{{item.overview}}</p>
-                <p class="card-text">Rating:{{item.vote_average}}</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-                <a href="#" class="btn btn-danger" style="align-content: right">Delete From Favorites</a>
-              </div>
-            </div>
+          <div class="container search_content" ng-repeat="item in vm.items">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card-img-bottom">
+                    <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-thumbnail">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-block">
+                    <h4 class="card-title">{{item.title}}</h4>
+                    <p class="card-text">{{item.overview}}</p>
+                    <p class="card-text">Rating:{{item.vote_average}}</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                    <a href="#" class="btn btn-danger" style="align-content: right" ng-click="vm.deleteFav(item.id)">Delete From Favorites</a>
+                  </div>
+                </div>
 
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        
+         <div ng-show="vm.items.length==0" class="card container">
+                   <div class="card card-inverse" style="background-color: #333; border-color: black; border-width: 1px; border-style: solid">
+                      <div class="card-block">
+                             <p class="card-text text-center"  style="color:white"> There are no favorites to be displayed</p>
+                      </div>
+                  </div>
+              </div>
+      
     </section>
 
 
@@ -66,4 +75,4 @@
     </div>
 </div>
 </div>
-<foot></foot>
+<!--<foot></foot>->
