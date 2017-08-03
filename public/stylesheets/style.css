@@ -1,12 +1,8 @@
-
-
-
 .wow {
   visibility: hidden;
 }
 
 /* TEMPLATE STYLES */
-
 html,
 body,
 header,
@@ -16,11 +12,7 @@ header,
 
 }
 
-
 /* Navigation*/
-
-
-
 .full-bg-img {
     color: #fff;
 }
@@ -77,8 +69,6 @@ footer.page-footer {
   z-index: 100;
   /*left:3%;*/
   width: 100%;
-
-
 }
 
 .card-img-bottom {

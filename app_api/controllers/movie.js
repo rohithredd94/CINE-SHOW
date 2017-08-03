@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var monk = require('monk');
+//var monk = require('monk');
 var Movie = mongoose.model('moviesData','moviesData');
 var Cast = mongoose.model('cast','cast');
 var Genre = mongoose.model('genres','genres');
 var ReviewData = mongoose.model('reviews','reviews');
-var db = monk('localhost:27017/movies');
+//var db = monk('localhost:27017/movies');
 
 
 module.exports.getPopular = function(req, res) {
@@ -121,7 +121,7 @@ module.exports.getMovieProfile = function(req, res) {
   } else {
      var movieData = {};
      var genres = [];
-     Movie
+     /*Movie
       .findOne({id:req.params.id})
       .exec(function(err, movie) {
         movieData = JSON.parse(JSON.stringify(movie));
@@ -157,7 +157,44 @@ module.exports.getMovieProfile = function(req, res) {
             res.status(200).json(movieData);
 
           });
-      });
+      });*/
+
+      Movie
+      .findOne({id:req.params.id})
+      .exec(function(err, movie) {
+        movieData = JSON.parse(JSON.stringify(movie));
+        movieData['genre'] = [];
+        movieData['genre_ids'].forEach(function(value){
+          //console.log(value);
+          Genre.findOne({id:value})
+          .exec(function(err,genre){
+            //console.log(genre['name']);
+            //movieData['genre'] = genre['name'];
+            genres.push(genre['name']);
+          })
+        });
+       // res.status(200).json(movie);
+      })
+      .then(function(){
+         movieData['reviews'] = {};
+         ReviewData.find({movie_id:req.params.id}).sort({created_date: -1}).limit(5)
+         .exec(function(err,review){
+            movieData['reviews'] = review;
+            //console.log(movieData);
+            //res.status(200).json(movieData);
+            movieData['genre'] = genres;
+            movieData['cast'] = {};
+
+            Cast.findOne({id:req.params.id})
+              .exec(function(err, cast) {
+                movieData['cast'] = cast['cast'];
+                //console.log('----CAST----',cast['cast']);
+                res.status(200).json(movieData);
+
+              });
+
+         })
+      })
   }
 };
 
@@ -185,6 +222,22 @@ module.exports.getTopratedAll = function(req, res) {
   } else {
     Movie
       .find({active:true}).sort( { vote_average: -1 } )
+      .exec(function(err, movie) {
+
+        res.status(200).json(movie);
+      });
+}
+};
+
+module.exports.getAllMovies = function(req, res) {
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie
+      .find({})
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
@@ -268,3 +321,51 @@ module.exports.showMovie = function(req, res){
     })
   }
 };
+
+module.exports.addMovie = function(req, res){
+  console.log("inside add movie");
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  }else{
+    var movie  = new Movie();
+
+    movie.title = req.body.title;
+    movie.overview = req.body.overview;
+    movie.genre_ids = req.body.genre_ids;
+    movie.release_date = req.body.release_date;
+    movie.image = req.body.image;
+    movie.id = req.body.id;
+    movie.active = true;
+    movie.vote_average = 0;
+    movie.vote_count = 0;
+    movie.poster_path = req.body.poster_path;
+
+    console.log(movie);
+
+    movie.save(function(err){
+      res.status(200).json("Movie Added");
+    })
+  }
+};
+
+module.exports.addCast = function(req, res){
+  console.log("inside add cast");
+  console.log("inside add movie");
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  }else{
+    var newcast = new Cast();
+
+    newcast.cast = req.body.cast;
+    newcast.id = req.body.id;
+    console.log(newcast);
+
+    newcast.save(function(err){
+      res.status(200).json("Cast Added");
+    });
+  }
+}

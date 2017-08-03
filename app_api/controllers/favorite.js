@@ -59,7 +59,7 @@ module.exports.getFavorites = function(req, res) {
                   //console.log("Movies Inside Loop ---> ",movieData);
                   if(movieData.length == fav.length){
                     console.log("Inside last loop");
-                    console.log("Movies ---> ",movieData);
+                    //console.log("Movies ---> ",movieData);
                     res.status(200).json(movieData);
 
                   }
@@ -69,6 +69,26 @@ module.exports.getFavorites = function(req, res) {
         })
        
     }
+};
+
+module.exports.deleteFavorite = function(req,res){
+  console.log("Inside Delete Favorite Controller");
+  //     if (!req.payload._id) {
+  //   res.status(401).json({
+  //     "message" : "UnauthorizedError: private profile"
+  //   });
+  // } else {
+    //console.log("Inside Else Part");
+    console.log("Data to delete Fav --->",req.body.movie_id);
+    Favorite.remove({movie_id:req.body.movie_id,user_id:req.body.user_id})
+    .exec(function(err, fav) {     
+        console.log("Deleted successfully");
+        //console.log("Movies ---> ",movieData);
+        res.status(200).json("Deleted favorite");
+
+      
+    }); 
+  //}
 };
 
  
