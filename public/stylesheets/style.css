@@ -135,3 +135,11 @@ footer.page-footer {
   margin: 2rem 1rem;
   padding-left:10rem;"
 }
+
+/*pagination*/
+.my-4{
+  
+  margin: 0 auto;
+  /*margin-left: auto;
+  margin-right: auto;*/
+}
