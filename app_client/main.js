@@ -65,6 +65,11 @@
         controller: 'genresCtrl',
         controllerAs: 'vm'
       })
+      .when('/movies/cast/:id', {
+        templateUrl: '/cast/cast.view.html',
+        controller: 'castCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API

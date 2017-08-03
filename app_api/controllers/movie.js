@@ -126,7 +126,7 @@ module.exports.getMovieProfile = function(req, res) {
          ReviewData.find({movie_id:req.params.id}).sort({created_date: -1}).limit(5)
          .exec(function(err,review){
             movieData['reviews'] = review;
-            console.log(movieData);
+            //console.log(movieData);
             //res.status(200).json(movieData);
          })
       })
@@ -137,7 +137,7 @@ module.exports.getMovieProfile = function(req, res) {
         Cast.findOne({id:req.params.id})
           .exec(function(err, cast) {
             movieData['cast'] = cast['cast'];
-            console.log('----CAST----',cast['cast']);
+            //console.log('----CAST----',cast['cast']);
             res.status(200).json(movieData);
 
           });

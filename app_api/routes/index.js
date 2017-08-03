@@ -12,6 +12,7 @@ var ctrlMovies = require('../controllers/movie');
 var ctrlGenres = require('../controllers/genre');
 var ctrlReview = require('../controllers/review');
 var ctrlFav = require('../controllers/favorite');
+var ctrlCast = require('../controllers/cast');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -49,5 +50,8 @@ router.get('/profile/review',  auth, ctrlReview.getMovieReview);
 router.post('/movies/favorite',  ctrlFav.postFavorite);
 router.get('/favorites/:user_id',auth, ctrlFav.getFavorites);
 router.post('/favorites/delete', ctrlFav.deleteFavorite);
+
+//Cast
+router.get('/movies/cast/:id',auth, ctrlCast.getCast);
 
 module.exports = router;

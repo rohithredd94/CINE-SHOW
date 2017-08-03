@@ -143,5 +143,9 @@ footer.page-footer {
 
 .cast{
   margin: 2rem 1rem;
-  padding-left:10rem;"
+  padding-left:10rem;
+}
+
+.fav_nofav{
+  margin:10rem 10rem;
 }
