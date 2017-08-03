@@ -59,13 +59,13 @@
 	    	<div class="card container" style="background-color: black;">
 			  <div class="card-header">
 			    <ul class="nav nav-pills card-header-pills">
-			      <li class="nav-item nav-link col-md-4">
+			      <li class="nav-item nav-link col-md-3">
 			        User
 			      </li>
-			      <li class="nav-item nav-link col-md-4">
+			      <li class="nav-item nav-link col-md-3">
 			        Review
 			      </li>
-			      <li class="nav-item nav-link col-md-4">
+			      <li class="nav-item nav-link col-md-3">
 			        Ratings
 			      </li>
 			    </ul>
@@ -75,9 +75,10 @@
 					  <div class="card-block">
 					    <p class="card-text">
 					     <ul class="nav nav-pills">
-					     	<li class="col-md-4" style="color:white">{{review.user_id}}</li>
-					     	<li class="col-md-4" style="color:white">{{review.review}}</li>
-					     	<li class="col-md-4" style="color:white">{{review.rating}}</li>
+					     	<li class="col-md-3" style="color:white">{{review.user_id}}</li>
+					     	<li class="col-md-3" style="color:white">{{review.review}}</li>
+					     	<li class="col-md-3" style="color:white">{{review.rating}}</li>
+                            <li class="col-md-3"><button ng-show="review.user_id == vm.user.email" class="btn btn-info" ng-click="vm.edit(review)">EDIT</button></li>
 					     </ul>
 					    </p>
 					  </div>
@@ -92,7 +93,7 @@
 			  </div>
 			</div>
 	    </div>
-	    <button ng-click="show = 1" style="margin: 10px 20px" class="btn btn-danger col-md-3">Write a Review</button>
+	    <button ng-show="vm.showWriteReview" ng-click="show = 1" style="margin: 10px 20px" class="btn btn-danger col-md-3">Write a Review</button>
 
 	    <form ng-show="show==1" ng-submit="vm.onSubmit()" style="margin:20px 20px; border:1px solid #333;">
 	    	<!--<div class="form-group row">
@@ -106,7 +107,7 @@
 			</div>-->
 		    <div class="form-group row" >
 		    	 <label for="review" class="col-2 col-form-label text-center" style="font-size: medium; margin-top: 15px;">Review</label>
-	 			 <div class="col-9" style="border:1px solid #333;margin-top: 10px">
+	 			 <div class="col-9" style="border:1px solid #333;margin-top: 10px color: white;">
 	   			 	<input class="form-control" type="textbox" id="review" placeholder="Write your review here" ng-model="vm.review.review">
 	  			 </div>
 		    </div>
@@ -114,11 +115,28 @@
 			  <label for="rating" class="col-2 col-form-label text-center" style="font-size: medium;">Ratings</label>
 			  <div class="col-9"  style="border:1px solid #333;">
 			    <input class="form-control" type="number" id="rating" placeholder="Give your ratings from 10" min=0 max=10 ng-model="vm.review.rating">
-			  </div>			
+			  </div>
+            </div>			
             <button class="btn btn-danger" type="submit" style="margin: 10px 40px;">Submit</button>
            
 			<!--<a class="btn btn-danger" style="margin: 10px 40px;" href="/movies/{{vm.movie.id}}/review">Submit</a>-->
 		</form>
+        <div ng-show="vm.showEdit">
+        <form ng-submit="vm.updateReview()" style="margin:20px 20px; border:1px solid #333;">
+            <div class="form-group row" >
+                 <label for="review" class="col-2 col-form-label text-center" style="font-size: medium; margin-top: 15px;">Review</label>
+                 <div class="col-9" style="border:1px solid #333;margin-top: 10px">
+                    <input class="form-control" type="textbox" id="review" placeholder="Write your review here" ng-model="vm.editReview.review">
+                 </div>
+            </div>
+            <div class="form-group row">
+              <label for="rating" class="col-2 col-form-label text-center" style="font-size: medium;">Ratings</label>
+              <div class="col-9"  style="border:1px solid #333;">
+                <input class="form-control" type="number" id="rating" placeholder="Give your ratings from 10" min=0 max=10 ng-model="vm.editReview.rating">
+              </div>            
+            <button class="btn btn-danger" type="submit" style="margin: 10px 40px;">Submit</button>
+        </form>
+        </div>
 	 </section>
 </div>
 
@@ -246,3 +264,4 @@
 <footer style="height: 5%; background-color: black;">
 
 </footer>
+<foot></foot>

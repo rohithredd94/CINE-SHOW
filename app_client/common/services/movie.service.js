@@ -120,6 +120,14 @@
       });
     }
 
+    var getAllMovies = function(){
+      return $http.get('/api/movies/All', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
 
     console.log("Hello",getMovieProfile);
     return {
@@ -136,7 +144,8 @@
       deleteMovie : deleteMovie,
       showMovie : showMovie,
       addMovie : addMovie,
-      addCast : addCast
+      addCast : addCast,
+      getAllMovies : getAllMovies
     };
   }
 

@@ -105,7 +105,7 @@ module.exports.getMovieProfile = function(req, res) {
   } else {
      var movieData = {};
      var genres = [];
-     Movie
+     /*Movie
       .findOne({id:req.params.id})
       .exec(function(err, movie) {
         movieData = JSON.parse(JSON.stringify(movie));
@@ -141,7 +141,44 @@ module.exports.getMovieProfile = function(req, res) {
             res.status(200).json(movieData);
 
           });
-      });
+      });*/
+
+      Movie
+      .findOne({id:req.params.id})
+      .exec(function(err, movie) {
+        movieData = JSON.parse(JSON.stringify(movie));
+        movieData['genre'] = [];
+        movieData['genre_ids'].forEach(function(value){
+          //console.log(value);
+          Genre.findOne({id:value})
+          .exec(function(err,genre){
+            //console.log(genre['name']);
+            //movieData['genre'] = genre['name'];
+            genres.push(genre['name']);
+          })
+        });
+       // res.status(200).json(movie);
+      })
+      .then(function(){
+         movieData['reviews'] = {};
+         ReviewData.find({movie_id:req.params.id}).sort({created_date: -1}).limit(5)
+         .exec(function(err,review){
+            movieData['reviews'] = review;
+            //console.log(movieData);
+            //res.status(200).json(movieData);
+            movieData['genre'] = genres;
+            movieData['cast'] = {};
+
+            Cast.findOne({id:req.params.id})
+              .exec(function(err, cast) {
+                movieData['cast'] = cast['cast'];
+                //console.log('----CAST----',cast['cast']);
+                res.status(200).json(movieData);
+
+              });
+
+         })
+      })
   }
 };
 
@@ -169,6 +206,22 @@ module.exports.getTopratedAll = function(req, res) {
   } else {
     Movie
       .find({active:true}).sort( { vote_average: -1 } )
+      .exec(function(err, movie) {
+
+        res.status(200).json(movie);
+      });
+}
+};
+
+module.exports.getAllMovies = function(req, res) {
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    Movie
+      .find({})
       .exec(function(err, movie) {
 
         res.status(200).json(movie);
