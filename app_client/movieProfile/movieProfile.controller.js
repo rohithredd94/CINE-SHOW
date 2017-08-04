@@ -1,3 +1,4 @@
+
 (function() {
 
   angular
@@ -6,8 +7,9 @@
     .constant('ratingConfig', { max: 5 })
     .controller('RatingController',RatingController);
 
-  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication','$route','$timeout','ratingConfig','$scope','genres'];
-  function movieCtrl($location, meanData, review, favorite, movieData, authentication,$route,$timeout,ratingConfig,$scope,genres) {
+
+  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication','$route','$timeout','ratingConfig','$scope','genres','SweetAlert'];
+  function movieCtrl($location, meanData, review, favorite, movieData, authentication,$route,$timeout,ratingConfig,$scope,genres, SweetAlert) {
     var vm = this;
     vm.user = {};
     vm.movie = {};
@@ -145,8 +147,14 @@
         .postFavorite(vm.favorite)
         .success(function(){
           console.log("Inside success");
-          $location.path('/movies/'+vm.movie.id);
-          $route.reload()
+          SweetAlert.success(
+            'Added to favorite',
+            {title: "SUCCESS!"}
+        );
+        // SweetAlert.confirm("Are you sure?", {title : "Careful now!"})
+        //   .then(function(p) { console.log("Yo"); },
+        //         function(p) { console.log("yo2");}
+        //   );
         })
         .error(function(err){
           console.log(err.message);
@@ -218,21 +226,37 @@
 
     vm.deleteMovie = function(){
       console.log('Delete Movie', vm.movie.id);
-      movieData.deleteMovie(vm.movie.id)
-      .success(function(info){
-        //$location.path('/main');
-        $location.path('/movies/'+vm.movie.id);
-        $route.reload()
-      });
+      SweetAlert.confirm("Are you sure?", {title : "Delete Movie"})
+        .then(function(p) {
+          if(p){
+            movieData.deleteMovie(vm.movie.id)
+            .success(function(info){
+              //$location.path('/main');
+              $location.path('/movies/'+vm.movie.id);
+              $route.reload()
+            });
+          }else{
+            console.log("cancel");
+          }
+        }
+        );
     }
 
     vm.showMovie = function(){
       console.log('Show Movie', vm.movie.id);
-      movieData.showMovie(vm.movie.id)
-      .success(function(info){
-        $location.path('/movies/'+vm.movie.id);
-        $route.reload()
-      });
+      SweetAlert.confirm("Are you sure?", {title : "Show Movie"})
+      .then(function(p) {
+        if(p){
+          movieData.showMovie(vm.movie.id)
+          .success(function(info){
+            $location.path('/movies/'+vm.movie.id);
+            $route.reload()
+          });
+        }else{
+          console.log("cancel");
+        }
+      }
+    );
     }
     vm.showWriteReview = true;
     movieData.getMovieProfile()
@@ -248,7 +272,7 @@
             vm.showWriteReview = false;
           }
         }
-        
+
         vm.movieRatinPercentage = data['vote_average']* 10;
       })
       .error(function (e) {

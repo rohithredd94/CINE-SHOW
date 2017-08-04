@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('meanApp', ['ngRoute']);
+  angular.module('meanApp', ['ngRoute','ng-sweet-alert']);
 
 
   function config ($routeProvider, $locationProvider) {
@@ -50,6 +50,11 @@
         controller: 'popularCtrl',
         controllerAs: 'vm'
       })
+      .when('/comingsoon', {
+        templateUrl: '/comingsoon/comingsoon.view.html',
+        controller: 'csCtrl',
+        controllerAs: 'vm'
+      })
       .when('/latest', {
         templateUrl: '/latest/latest.view.html',
         controller: 'latestCtrl',
@@ -63,6 +68,11 @@
       .when('/genres/:id', {
         templateUrl: '/genres/genres.view.html',
         controller: 'genresCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/movies/cast/:id', {
+        templateUrl: '/cast/cast.view.html',
+        controller: 'castCtrl',
         controllerAs: 'vm'
       })
       .when('/allmovies', {
@@ -80,10 +90,10 @@
     console.log('Inside Run Function');
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       //This code is not helping to prevent illegal login
-      if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
+      if (!($location.path() === '/' || $location.path() === '/register' || $location.path() === '/login') && !authentication.isLoggedIn()) {
         console.log('Checking if logged in-1');
         $location.path('/');
-      }else if(($location.path() === '/'/* || $location.path() === '/register'*/) && authentication.isLoggedIn()){ //Change by Rohith
+      }else if(($location.path() === '/' || $location.path() === '/register' || $location.path() === '/login') && authentication.isLoggedIn()){ //Change by Rohith
         console.log('Checking if logged in-2');
         $location.path('/main');
       }

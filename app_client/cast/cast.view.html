@@ -1,0 +1,77 @@
+<navigation></navigation><br><br><br><br>
+<search></search>
+<!-- <div class="card container cast" >
+	    <ul class="nav nav-pills card-header-pills">
+			  <li class="nav-item nav-link col-md-12">
+			        <p class="h5 text-center">CAST</p>
+			  </li>
+	    </ul>
+	</div>
+	<div class="card-columns" style="margin-bottom: 20px;">
+	    <div class="card" ng-repeat='cast in vm.moviecast.cast'>
+
+		      <img class="card-img-top" data-sizes="auto" ng-src="https://image.tmdb.org/t/p/w500{{cast.profile_path}}" onerror="this.src='images/profile_photo.png'" alt="Card image cap" style="image-rendering: crisp-edges;">
+		      <div class="card-block">
+			      <h4 class="card-title">{{cast.character}}</h4>
+			        <p class="card-text">{{cast.name}}</p>
+		      </div>
+	    </div>
+		</div>
+	</div>
+
+	<navigation></navigation> -->
+	<!-- <div class="container">
+	  <h1> Main Page </h1>
+	  <ul>
+	    <li ng-repeat='video in vm.videos'>
+	      <img ng-src="images/{{video.title}}.jpg" alt="">
+	      <a href="edit_video/{{video._id}}">{{video.title}}</a>
+	      <a href="delete_video/{{video._id}}">
+	            <i class="glyphicon glyphicon-remove"></i>
+	      </a>
+	    </li>
+	  </ul>
+	  <a class="btn btn-primary" href="add_video"> Add Video </a>
+	</div> -->
+	<div class="hm-black-light view-main col-md-12">
+	        <section class="section" style="margin-bottom: 0px;">
+	            <!--Section heading-->
+	            <p class="h1-responsive section-heading">CAST INFO</p>
+	      <div class = "row" >
+	              <div class="col-lg-3 col-md-6 mb-r" ng-repeat='cast in vm.moviecast.cast'>
+
+	                <div class="card card-cascade narrower" style="margin-bottom:20px;">
+	                  <div class="view overlay hm-black-light ">
+
+	                        <img ng-src="https://image.tmdb.org/t/p/w500{{cast.profile_path}}" onerror="this.src='images/profile_photo.png'" alt="{{cast.name}}" class="img-fluid main-img" alt="">
+
+	                        <div class="mask flex-center">
+	                            <p class="h4-responsive white-text" >{{cast.character}}</p>
+	                            <!-- <div class="c100 p{{movie.movieRatinPercentage}}">
+	                                <span>{{movie.movieRatinPercentage}}%</span>
+	                                <div class="slice">
+	                                    <div class="bar"></div>
+	                                    <div class="fill"></div>
+	                                </div>
+	                            </div> -->
+	                        </div>
+
+	                    <a href="video/{{video._id}}">
+	                        <div class="mask waves-effect waves-light" ripple-radius></div>
+	                    </a>
+
+
+
+	                  </div>
+										<p class="h4">{{cast.character}}</p>
+							      <p class="h6">{{cast.name}}</p>
+
+	                </div>
+
+	              </div>
+	            </div>
+	</section>
+	</div>
+	<!-- <footer class="footer" style="padding-top: 60px;"><p>FOOTER</p></footer> -->
+
+<foot></foot>

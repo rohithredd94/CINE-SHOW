@@ -46,6 +46,23 @@ module.exports.getPopularAll = function(req, res) {
 
 };
 
+module.exports.getComingSoon =  function(req, res) {
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    console.log("Inside coming soon else");
+    Movie
+      .find({"release_date": { $gte : "2017-08-09"}, active:true})
+      .exec(function(err, movie) {
+        console.log("Coming Soon -->",movie);
+        res.status(200).json(movie);
+      });
+  }
+
+};
+
 module.exports.getLatest = function(req, res) {
   var tempdate = new Date();
   tempdate.setDate(tempdate.getDate() - 30);
@@ -144,7 +161,7 @@ module.exports.getMovieProfile = function(req, res) {
          ReviewData.find({movie_id:req.params.id}).sort({created_date: -1}).limit(5)
          .exec(function(err,review){
             movieData['reviews'] = review;
-            console.log(movieData);
+            //console.log(movieData);
             //res.status(200).json(movieData);
          })
       })
@@ -155,7 +172,7 @@ module.exports.getMovieProfile = function(req, res) {
         Cast.findOne({id:req.params.id})
           .exec(function(err, cast) {
             movieData['cast'] = cast['cast'];
-            console.log('----CAST----',cast['cast']);
+            //console.log('----CAST----',cast['cast']);
             res.status(200).json(movieData);
 
           });

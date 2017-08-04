@@ -12,6 +12,8 @@ var ctrlMovies = require('../controllers/movie');
 var ctrlGenres = require('../controllers/genre');
 var ctrlReview = require('../controllers/review');
 var ctrlFav = require('../controllers/favorite');
+var ctrlCast = require('../controllers/cast');
+
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -37,6 +39,7 @@ router.get('/movies/show/:id', auth, ctrlMovies.showMovie);
 router.post('/movies/', auth, ctrlMovies.getSearch);
 router.post('/movies/addCast', auth, ctrlMovies.addCast);
 router.get('/movies/All', auth, ctrlMovies.getAllMovies);
+router.get('/movies/comingsoon', auth, ctrlMovies.getComingSoon);
 
 //genres
 router.get('/genres',auth, ctrlGenres.getGenres);
@@ -53,5 +56,8 @@ router.post('/review/update',  auth, ctrlReview.updateReview);
 router.post('/movies/favorite',  ctrlFav.postFavorite);
 router.get('/favorites/:user_id',auth, ctrlFav.getFavorites);
 router.post('/favorites/delete', ctrlFav.deleteFavorite);
+
+//Cast
+router.get('/movies/cast/:id',auth, ctrlCast.getCast);
 
 module.exports = router;
