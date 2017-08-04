@@ -227,30 +227,36 @@
     vm.deleteMovie = function(){
       console.log('Delete Movie', vm.movie.id);
       SweetAlert.confirm("Are you sure?", {title : "Delete Movie"})
-        .then(function(p) { movieData.deleteMovie(vm.movie.id)
-        .success(function(info){
-          //$location.path('/main');
-          $location.path('/movies/'+vm.movie.id);
-          $route.reload()
-        }); },
-              function(p) { console.log("cancel");}
+        .then(function(p) {
+          if(p){
+            movieData.deleteMovie(vm.movie.id)
+            .success(function(info){
+              //$location.path('/main');
+              $location.path('/movies/'+vm.movie.id);
+              $route.reload()
+            });
+          }else{
+            console.log("cancel");
+          }
+        }
         );
-
     }
 
     vm.showMovie = function(){
       console.log('Show Movie', vm.movie.id);
       SweetAlert.confirm("Are you sure?", {title : "Show Movie"})
       .then(function(p) {
-        movieData.showMovie(vm.movie.id)
-        .success(function(info){
-          $location.path('/movies/'+vm.movie.id);
-          $route.reload()
-        });
-      },
-      function(p) { console.log("cancel");}
+        if(p){
+          movieData.showMovie(vm.movie.id)
+          .success(function(info){
+            $location.path('/movies/'+vm.movie.id);
+            $route.reload()
+          });
+        }else{
+          console.log("cancel");
+        }
+      }
     );
-
     }
     vm.showWriteReview = true;
     movieData.getMovieProfile()
