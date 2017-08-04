@@ -21,6 +21,13 @@
         }
       });
     };
+    var getComingSoon = function () {
+      return $http.get('/api/movies/comingsoon', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
     var getTopratedAll = function () {
       return $http.get('/api/movies/topratedAll', {
         headers: {
@@ -145,7 +152,8 @@
       showMovie : showMovie,
       addMovie : addMovie,
       addCast : addCast,
-      getAllMovies : getAllMovies
+      getAllMovies : getAllMovies,
+      getComingSoon : getComingSoon
     };
   }
 

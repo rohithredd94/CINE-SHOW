@@ -46,6 +46,23 @@ module.exports.getPopularAll = function(req, res) {
 
 };
 
+module.exports.getComingSoon =  function(req, res) {
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    console.log("Inside coming soon else");
+    Movie
+      .find({"release_date": { $gte : "2017-08-09"}, active:true})
+      .exec(function(err, movie) {
+        console.log("Coming Soon -->",movie);
+        res.status(200).json(movie);
+      });
+  }
+
+};
+
 module.exports.getLatest = function(req, res) {
 
   if (!req.payload._id) {
