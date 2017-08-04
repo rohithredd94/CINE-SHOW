@@ -1,5 +1,14 @@
 <navigation></navigation><br><br><br>
 <search></search>
+<style type="text/css">
+  [rating] {
+    color: gray;
+  }
+
+  [rating] .fa-star.active {
+    color: yellow;
+  }
+</style>
 <div class="hm-black-light view-main col-md-12">
 
  <section class="section" style="margin-bottom: 0px; margin-top: 50px">
@@ -128,10 +137,13 @@
 		    </div>
 		    <div class="form-group row">
 			  <label for="rating" class="col-2 col-form-label text-center" style="font-size: medium;">Ratings</label>
-			  <div class="col-9"  style="border:1px solid #333;">
+			  <!-- <div class="col-9"  style="border:1px solid #333;">
 			    <input class="form-control" type="number" id="rating" placeholder="Give your ratings from 10" min=0 max=10 ng-model="vm.review.rating">
-			  </div>
+			   </div>-->
+        <div rating ng-model="secondRating" max="10"></div>
             </div>
+
+
             <button class="btn btn-danger" type="submit" style="margin: 10px 40px;">Submit</button>
 
 			<!--<a class="btn btn-danger" style="margin: 10px 40px;" href="/movies/{{vm.movie.id}}/review">Submit</a>-->
@@ -146,10 +158,14 @@
             </div>
             <div class="form-group row">
               <label for="rating" class="col-2 col-form-label text-center" style="font-size: medium;">Ratings</label>
-              <div class="col-9"  style="border:1px solid #333;">
+              <!-- <div class="col-9"  style="border:1px solid #333;">
                 <input class="form-control" type="number" id="rating" placeholder="Give your ratings from 10" min=0 max=10 ng-model="vm.editReview.rating">
-              </div>
+              </div> -->
+
+              <div rating ng-model="firstRating" max="10"></div>
+            </div>
             <button class="btn btn-danger" type="submit" style="margin: 10px 40px;">Submit</button>
+            <a class="btn btn-primary" style="margin: 10px 40px;" ng-click="vm.showEdit = false">Cancel</a>
         </form>
         </div>
 	 </section>
@@ -186,11 +202,19 @@
                         <input type="date" id="form21" class="form-control" ng-model="vm.user.password">
                         <label for="form21">Release Date</label>
                     </div> -->
-                    <i class="fa fa-pencil prefix"></i>
+                    <!-- <i class="fa fa-pencil prefix"></i>
                     <label>Genres</label>
                     <ul style="display: block;" ng-repeat="genre in vm.newgenres">
                     	<li><input type="checkbox" name="selectedGenres[]" value="{{genre.id}}" ng-checked="vm.selection.indexOf(genre.id) > -1" ng-click="vm.toggleSelection(genre.id)"> {{genre.name}}</li>
-                    </ul>
+                    </ul> -->
+
+                    <i class="fa fa-pencil prefix"></i>
+                    <label>Genres</label>
+                    <div ng-repeat="items in vm.test" class="row">
+                        <div ng-repeat="item in items" class="col-md-4">
+                            <input type="checkbox" name="selectedGenres[]" value="{{item.id}}" ng-checked="vm.selection.indexOf(item.id) > -1" ng-click="vm.toggleSelection(item.id)"> {{item.name}}
+                        </div>
+                    </div>
 
                     <i class="fa fa-pencil prefix"></i>
                     <label for="form8">Poster</label>
@@ -206,7 +230,7 @@
                     <div class="text-center mt-1-half">
 
                         <button class="btn btn-info mb-2" type="submit">Update <i class="fa fa-pencil-square-o ml-1"></i></button>&nbsp;
-                        <button class="btn btn-info mb-2" ng-click="vm.clearMessage()" data-dismiss="modal">Done</button>
+                        <button class="btn btn-info mb-2" ng-click="vm.editDone()" data-dismiss="modal">Done</button>
                     </div>
 
                 </div>
