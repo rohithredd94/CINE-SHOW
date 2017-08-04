@@ -1,11 +1,12 @@
+
 (function() {
 
   angular
     .module('meanApp')
     .controller('movieCtrl', movieCtrl);
 
-  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication','$route','$timeout'];
-  function movieCtrl($location, meanData, review, favorite, movieData, authentication,$route,$timeout) {
+  movieCtrl.$inject = ['$location', 'meanData','review', 'favorite', 'movieData','authentication','$route','$timeout','$scope','SweetAlert'];
+  function movieCtrl($location, meanData, review, favorite, movieData, authentication,$route,$timeout,$scope,SweetAlert) {
     var vm = this;
     vm.user = {};
     vm.movie = {};
@@ -147,8 +148,14 @@
         .postFavorite(vm.favorite)
         .success(function(){
           console.log("Inside success");
-          $location.path('/movies/'+vm.movie.id);
-          $route.reload()
+          SweetAlert.success(
+            'Added to favorite',
+            {title: "SUCCESS!"}
+        );
+        // SweetAlert.confirm("Are you sure?", {title : "Careful now!"})
+        //   .then(function(p) { console.log("Yo"); },
+        //         function(p) { console.log("yo2");}
+        //   );
         })
         .error(function(err){
           console.log(err.message);
@@ -219,21 +226,31 @@
 
     vm.deleteMovie = function(){
       console.log('Delete Movie', vm.movie.id);
-      movieData.deleteMovie(vm.movie.id)
-      .success(function(info){
-        //$location.path('/main');
-        $location.path('/movies/'+vm.movie.id);
-        $route.reload()
-      });
+      SweetAlert.confirm("Are you sure?", {title : "Delete Movie"})
+        .then(function(p) { movieData.deleteMovie(vm.movie.id)
+        .success(function(info){
+          //$location.path('/main');
+          $location.path('/movies/'+vm.movie.id);
+          $route.reload()
+        }); },
+              function(p) { console.log("cancel");}
+        );
+
     }
 
     vm.showMovie = function(){
       console.log('Show Movie', vm.movie.id);
-      movieData.showMovie(vm.movie.id)
-      .success(function(info){
-        $location.path('/movies/'+vm.movie.id);
-        $route.reload()
-      });
+      SweetAlert.confirm("Are you sure?", {title : "Show Movie"})
+      .then(function(p) {
+        movieData.showMovie(vm.movie.id)
+        .success(function(info){
+          $location.path('/movies/'+vm.movie.id);
+          $route.reload()
+        });
+      },
+      function(p) { console.log("cancel");}
+    );
+
     }
     vm.showWriteReview = true;
     movieData.getMovieProfile()
@@ -249,7 +266,7 @@
             vm.showWriteReview = false;
           }
         }
-        
+
         vm.movieRatinPercentage = data['vote_average']* 10;
       })
       .error(function (e) {
@@ -265,7 +282,7 @@
                link: function(scope, element, attrs) {
                   var model = $parse(attrs.fileModel);
                   var modelSetter = model.assign;
-                  
+
                   element.bind('change', function(){
                      scope.$apply(function(){
                         modelSetter(scope, element[0].files[0]);

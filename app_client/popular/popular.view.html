@@ -1,5 +1,5 @@
 <span id='top'></span>
-<navigation></navigation><br><br><br>
+<navigation></navigation><br><br><br><br>
 <search></search>
 
 <div class="hm-black-light view-main col-md-12">
@@ -17,6 +17,7 @@
 
             </div> -->
     <section>
+      <br><span class="h5">We found {{vm.movie.length}} movies in this category</span><br><br>
       <div class="container search_content" ng-repeat="item in vm.items">
         <div class="card">
           <div class="row">
@@ -29,7 +30,7 @@
               <div class="card-block">
                 <h4 class="card-title">{{item.title}}</h4>
                 <p class="card-text">{{item.overview}}</p>
-                <p class="card-text">Rating:{{item.vote_average}}</p>
+                <p class="card-text">Rating: {{item.vote_average}}/10</p>
                 <a href="/movies/{{item.id}}" class="btn btn-primary">Read More</a>
               </div>
             </div>

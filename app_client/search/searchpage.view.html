@@ -1,5 +1,5 @@
 <span id='top'></span>
-<navigation></navigation><br><br><br>
+<navigation></navigation><br><br><br><br>
 <search></search>
 
 <div class="hm-black-light view-main col-md-12">
@@ -16,8 +16,8 @@
                 <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}">
 
             </div> -->
-    <span>{{vm.infomsg}}</span>
     <section>
+      <br><span class="h5">Results: {{vm.searchData.length}}</span><br><br>
       <div class="container search_content" ng-repeat="item in vm.items">
         <div class="card">
           <div class="row">
@@ -28,9 +28,9 @@
             </div>
             <div class="col-md-8">
               <div class="card-block">
-                <h4 class="card-title">{{item.title}}</h4>
-                <p class="card-text">{{item.overview}}</p>
-                <p class="card-text">Rating:{{item.vote_average}}</p>
+                <h4 class="card-title h4">{{item.title}}</h4>
+                <p class="card-text h6">{{item.overview}}</p>
+                <p class="card-text h6">Rating: {{item.vote_average}}/10</p>
                 <a href="/movies/{{item.id}}" class="btn btn-primary">Read More</a>
               </div>
             </div>

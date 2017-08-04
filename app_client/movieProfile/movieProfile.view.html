@@ -1,9 +1,8 @@
-<navigation></navigation><br><br><br>
+<navigation></navigation><br><br><br><br>
 <search></search>
 <div class="hm-black-light view-main col-md-12">
 
  <section class="section" style="margin-bottom: 0px; margin-top: 50px">
-
 
    <div class ="animated fadeInLeft">
  	   <p class="h2"> {{vm.movie.title}} </p><br/>
@@ -16,9 +15,10 @@
  	        <button type="submit" class="btn btn-danger btn-sm" style="color:white">
  	          <i class="fa fa-heart" aria-hidden="true"></i> &nbsp; Add to favorites
  	        </button>
+          <!-- data-toggle="modal" data-target="#modalDeleteForm" -->
           <button type="button" ng-show="vm.isAdmin" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEditForm" ng-click="vm.onUpdateMsg = ''"><i class="fa fa-pencil-square-o fa-5x" aria-hidden="true"></i>&nbsp;&nbsp;Edit movie</button>
-	    	<button type="button" ng-show="vm.isAdmin && vm.movie.active" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDeleteForm"><i class="fa fa-trash-o fa-5x" aria-hidden="true"></i>&nbsp;&nbsp;Delete movie</button>
-            <button type="button" ng-show="vm.isAdmin && !vm.movie.active" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalShowForm"><i class="fa fa-eye fa-5x" aria-hidden="true"></i>&nbsp;&nbsp;Show movie</button>
+	    	<button type="button" ng-show="vm.isAdmin && vm.movie.active" class="btn btn-danger btn-sm"  ng-click="vm.deleteMovie()"><i class="fa fa-trash-o fa-5x" aria-hidden="true"></i>&nbsp;&nbsp;Delete movie</button>
+            <button type="button" ng-show="vm.isAdmin && !vm.movie.active" class="btn btn-danger btn-sm" ng-click="vm.showMovie()"><i class="fa fa-eye fa-5x" aria-hidden="true"></i>&nbsp;&nbsp;Show movie</button>
  	    </form>
          <br/>
      	   <p class="h6">OVERVIEW</p>
@@ -66,13 +66,9 @@
 		    </div>
 		  </div>
 		</div>
-        <form ng-submit="vm.getCast()">
-           <div class="form-group row" >
-               <a href="/movies/cast/{{vm.movie.id}}">
-                     <button class="btn btn-danger" type="submit" style="margin: 10px 40px;">More Cast Info...</button>
-                </a>
-           </div>
-        </form>
+    <div class="MoreCast">
+        <a href="/movies/cast/{{vm.movie.id}}" class="btn btn-danger">More Cast Info...</a>
+    </div>
 
 
 	    <div class="discussionContainer" >

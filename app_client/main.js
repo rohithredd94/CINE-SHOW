@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('meanApp', ['ngRoute']);
+  angular.module('meanApp', ['ngRoute','ng-sweet-alert']);
 
 
   function config ($routeProvider, $locationProvider) {
@@ -85,10 +85,10 @@
     console.log('Inside Run Function');
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       //This code is not helping to prevent illegal login
-      if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
+      if (!($location.path() === '/' || $location.path() === '/register' || $location.path() === '/login') && !authentication.isLoggedIn()) {
         console.log('Checking if logged in-1');
         $location.path('/');
-      }else if(($location.path() === '/'/* || $location.path() === '/register'*/) && authentication.isLoggedIn()){ //Change by Rohith
+      }else if(($location.path() === '/' || $location.path() === '/register' || $location.path() === '/login') && authentication.isLoggedIn()){ //Change by Rohith
         console.log('Checking if logged in-2');
         $location.path('/main');
       }
