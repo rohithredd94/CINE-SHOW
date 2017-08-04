@@ -13,7 +13,8 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="card-img-bottom">
-                    <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-thumbnail">
+                    <img ng-hide="item.image" ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-thumbnail" alt="Movie Poster">
+                    <img ng-show="item.image" ng-src="images/{{item.image}}" class="img-thumbnail" alt="Movie Poster">
                   </div>
                 </div>
                 <div class="col-md-8">

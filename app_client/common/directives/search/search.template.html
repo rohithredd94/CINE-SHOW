@@ -45,8 +45,9 @@
     <li ng-animate="'animate'" class="artist cf" ng-focus="focused=true" ng-repeat="item in shvm.movie | filter: query | limitTo:5 " style="height: 100%; height: 100%;  background-color: white;">
       <a ng-href="/movies/{{item.id}}" style="display: inline-block;">
         <div class="info row">
-          <img ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-fluid" alt="Photo of {{item.title}}" style="height: 50px; width: 50px; padding-left: 20px; background-size:cover;">
-          &nbsp&nbsp&nbsp&nbsp&nbsp
+          <img ng-hide="item.image" ng-src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" class="img-fluid main-img" alt="Movie Poster" style="height: 50px; width: 50px; padding-left: 20px; background-size:cover;">
+          <img ng-show="item.image" ng-src="images/{{item.image}}" class="img-fluid main-img" alt="Movie Poster" style="height: 50px; width: 50px; padding-left: 20px; background-size:cover;">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <p class="h3-responsive">{{item.title}}</p>
         </div>
       </a>
