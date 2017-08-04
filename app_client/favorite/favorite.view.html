@@ -30,7 +30,7 @@
                     <h4 class="card-title">{{item.title}}</h4>
                     <p class="card-text">{{item.overview}}</p>
                     <p class="card-text">Rating: {{item.vote_average}}/10</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
+                    <a class="btn btn-primary" href="/movies/{{item.id}}">Read More</a>
                     <a href="#" class="btn btn-danger" style="align-content: right" ng-click="vm.deleteFav(item.id)">Delete From Favorites</a>
                   </div>
                 </div>

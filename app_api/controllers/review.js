@@ -65,7 +65,7 @@ module.exports.getMovieReview = function(req, res){
           Movie.findOne({id:value['movie_id']})
           .exec(function(err, final) {
             i = i + 1;
-            value['movieName'] = final['original_title'];
+            value['movieName'] = final['title'];
             if(final.active)
               dummy.push(value);
             if (i == len){
