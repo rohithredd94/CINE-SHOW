@@ -39,6 +39,7 @@ router.get('/movies/show/:id', auth, ctrlMovies.showMovie);
 router.post('/movies/', auth, ctrlMovies.getSearch);
 router.post('/movies/addCast', auth, ctrlMovies.addCast);
 router.get('/movies/All', auth, ctrlMovies.getAllMovies);
+router.get('/movies/comingsoon', auth, ctrlMovies.getComingSoon);
 
 //genres
 router.get('/genres',auth, ctrlGenres.getGenres);

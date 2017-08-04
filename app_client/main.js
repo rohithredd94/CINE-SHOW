@@ -50,6 +50,11 @@
         controller: 'popularCtrl',
         controllerAs: 'vm'
       })
+      .when('/comingsoon', {
+        templateUrl: '/comingsoon/comingsoon.view.html',
+        controller: 'csCtrl',
+        controllerAs: 'vm'
+      })
       .when('/latest', {
         templateUrl: '/latest/latest.view.html',
         controller: 'latestCtrl',
