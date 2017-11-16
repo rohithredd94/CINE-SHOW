@@ -206,6 +206,7 @@
       console.log(vm.selection.length);
         if(vm.selection.length != 0)
           vm.movie.genre_ids = vm.selection;
+      vm.movie.image = vm.myFile.name;
       console.log(vm.movie);
       movieData.updateMovie(vm.movie).success(function(info){
         console.log('success');
@@ -325,5 +326,22 @@
               }
             };
          }]);
+
+  angular.module('meanApp')
+  .directive('fileModel',['$parse', function($parse){
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs){
+        var model = $parse(attrs.fileModel);
+        var modelSetter = model.assign;
+
+        element.bind('change', function(){
+          scope.$apply(function(){
+            modelSetter(scope, element[0].files[0]);
+          });
+        });
+      }
+    };
+  }]);
 })
 ();

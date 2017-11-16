@@ -9,7 +9,7 @@ var ReviewData = mongoose.model('reviews','reviews');
 
 module.exports.getPopular = function(req, res) {
   var tempdate = new Date();
-  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate.setDate(tempdate.getDate() - 60);
   tempdate = tempdate.toISOString();
   if (!req.payload._id) {
     res.status(401).json({
@@ -29,7 +29,7 @@ module.exports.getPopular = function(req, res) {
 module.exports.getPopularAll = function(req, res) {
   var currentdate = new Date().toISOString();
   var tempdate = new Date();
-  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate.setDate(tempdate.getDate() - 60);
   tempdate = tempdate.toISOString();
   if (!req.payload._id) {
     res.status(401).json({
@@ -65,7 +65,7 @@ module.exports.getComingSoon =  function(req, res) {
 
 module.exports.getLatest = function(req, res) {
   var tempdate = new Date();
-  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate.setDate(tempdate.getDate() - 60);
   tempdate = tempdate.toISOString();
   if (!req.payload._id) {
     res.status(401).json({
@@ -232,7 +232,7 @@ module.exports.getMovieProfile = function(req, res) {
 
 module.exports.getLatestAll = function(req, res) {
   var tempdate = new Date();
-  tempdate.setDate(tempdate.getDate() - 30);
+  tempdate.setDate(tempdate.getDate() - 60);
   tempdate = tempdate.toISOString();
   if (!req.payload._id) {
     res.status(401).json({

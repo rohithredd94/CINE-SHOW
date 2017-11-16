@@ -101,7 +101,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <!--Body-->
+                <!--Body  ng-submit="vm.addMovie()"-->
                 <form ng-submit="vm.addMovie()">
                 <div class="modal-body mb-0" style=" color: black;">
                     <div class="md-form form-sm">
@@ -125,17 +125,24 @@
                     </div>
                     <input type="checkbox" name="selectedGenres[]" value="878" ng-checked="vm.selection.indexOf(878) > -1" ng-click="vm.toggleSelection(878)"> Science Fiction
 
-                    <div class="md-form form-sm">
+                    <!-- <div class="md-form form-sm">
                         <i class="fa fa-key prefix"></i>
                         <input type="text" id="form21" class="form-control" ng-model="vm.newmovie.image">
                         <label for="form21">Image</label>
+                    </div> -->
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-key prefix"></i>
+                        <input type="file" id="form212" class="form-control" file-model="vm.myFile">
+                        <label for="form212">Image</label>
+                        <!-- <button ng-click="vm.uploadFile()">Upload</button> -->
                     </div>
 
                     <i class="fa fa-pencil prefix"></i>
                     <label>Cast</label>
                     <fieldset data-ng-repeat = "choice in vm.choices">
                         <div class="col-md-12">
-                            <input type="text" ng-model="choice.character" name="" placeholder="Enter cast role" class="col-md-5" required />
+                            <input type="text" ng-model="choice.character" name="" placeholder="Enter cast role" class="col-md-5" required/>
                             <input type="text" ng-model="choice.name" name="" placeholder="Enter cast name" class="col-md-4" required />
 
                         <a class="remove col-md-1" ng-show="$last && vm.choices.length > 5" ng-click="vm.removeChoice()" style="background: #C76868;color: #FFF; font-weight: bold; font-size: 21px;

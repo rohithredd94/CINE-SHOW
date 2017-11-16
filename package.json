@@ -21,6 +21,7 @@
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.2.0",
+    "sweetalert": "^2.0.2",
     "sweetalert2": "^6.6.6"
   },
   "devDependencies": {

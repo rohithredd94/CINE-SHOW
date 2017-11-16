@@ -84,6 +84,10 @@
     vm.clearMessage = function(){
       vm.onUpdateMsg = "";
     }
+    vm.uploadFile = function(){
+      var file = vm.myFile;
+      console.log(file.name);
+    }
     vm.updateUser = function(){
       vm.newdata._id = vm.user._id;
       vm.newdata.name = vm.user.name;
@@ -162,6 +166,7 @@
       vm.castData.cast = vm.cast;
       vm.castData.id = id;
       vm.newmovie.id = id;
+      vm.newmovie.image = vm.myFile.name;
       var addmovie = false;
       console.log(vm.newmovie);
       movieData.addMovie(vm.newmovie)
@@ -191,6 +196,23 @@
     }
 
   }
+
+  angular.module('meanApp')
+  .directive('fileModel',['$parse', function($parse){
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs){
+        var model = $parse(attrs.fileModel);
+        var modelSetter = model.assign;
+
+        element.bind('change', function(){
+          scope.$apply(function(){
+            modelSetter(scope, element[0].files[0]);
+          });
+        });
+      }
+    };
+  }]);
 
 
 })();

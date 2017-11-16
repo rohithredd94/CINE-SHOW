@@ -218,10 +218,16 @@
                         </div>
                     </div>
 
-                    <i class="fa fa-pencil prefix"></i>
+<!--                     <i class="fa fa-pencil prefix"></i>
                     <label for="form8">Poster</label>
-                    <!-- <input type="file" id="form8" class="form-control" file-model="vm.file" accept="image/*"> -->
-                    <input type="text" id="form8" class="form-control" ng-model="vm.movie.image">
+                    <input type="text" id="form8" class="form-control" ng-model="vm.movie.image"> -->
+
+                    <div class="md-form form-sm">
+                        <i class="fa fa-key prefix"></i>
+                        <input type="file" id="form212" class="form-control" file-model="vm.myFile" accept="image/*">
+                        <label for="form212">Poster</label>
+                        <!-- <button ng-click="vm.uploadFile()">Upload</button> -->
+                    </div>
 
                     <i class="fa fa-calendar"></i>
                     <label for="form21">Release Date</label>
